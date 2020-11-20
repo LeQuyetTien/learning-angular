@@ -53,8 +53,8 @@ ng serve
 
 ### 8. The Course Structure
 
-- Getting Started: tìm hiểu về Angular. Cách cài đặt và tạo ứng dụng
-- The Basics: đi sâu vào kiến thức cơ bản của Angular, cấu trúc thư mục, cách chúng kết nối với nhau
+- Getting Started: tìm hiểu sơ qua về Angular. Cách cài đặt và tạo ứng dụng
+- The Basics: hiểu rõ hơn về Angular. Nó thực sự là cái gì? Cái gì xảy ra đằng sau nó? Cấu trúc thư mục, cách chúng kết nối với nhau
 - Components & Databinding: xem xét các Component và cách liên kết dữ liệu
 - Directives: tìm hiểu về các Directive trong Angular
 - Services & Dependency Injection: tìm hiểu các thành phần vác cách chúng giao tiếp với nhau, cách tập trung code và theo dõi trạng thái ứng dụng
@@ -102,3 +102,5 @@ Thêm bootstrap.min.css vào mục styles trong angular.json
 ### 12. Where to find the Course Source Code
 
 Trong mỗi thư mục sẽ có file zip của source code cho mỗi phần. Nhưng chúng ta sẽ tự code và không cần dùng đến chúng :)
+
+## The Basics
