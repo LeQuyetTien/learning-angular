@@ -248,3 +248,23 @@ Sử dụng dấu nháy `` để viết trên nhiều dòng
 ### 21. Working with Component Styles
 
 Chúng ta có thể sử dụng styles thay cho styleUrls
+
+### 22. Fully Understanding the Component Selector
+
+Chúng ta có thể sử dụng nhiều loại selector khác nhau:
+
+> The CSS selector that identifies this directive in a template and triggers instantiation of the directive.
+>
+> Declare as one of the following:
+>
+> element-name: Select by element name.
+>
+> .class: Select by class name.
+>
+> [attribute]: Select by attribute name.
+>
+> [attribute=value]: Select by attribute name and value.
+>
+> :not(sub_selector): Select only if the element does not match the sub_selector.
+>
+> selector1, selector2: Select if either selector1 or selector2 matches.
