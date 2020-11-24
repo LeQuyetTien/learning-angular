@@ -104,3 +104,34 @@ Thêm bootstrap.min.css vào mục styles trong angular.json
 Trong mỗi thư mục sẽ có file zip của source code cho mỗi phần. Nhưng chúng ta sẽ tự code và không cần dùng đến chúng :)
 
 ## The Basics
+
+### 13. Module Introduction
+
+Trong phần này chúng ta sẽ đi sâu vào Angular để biết nó thực sự là cái gì? Cái gì xảy ra đằng sau nó? Cách Angular bắt đầu
+
+### 14. How an Angular App gets Loaded and Started
+
+Khi chúng ta chạy `ng serve`, Angular sẽ tạo ra một development server để host ứng dụng Angular ở địa chỉ http://localhost:4200/
+
+Khi trang này được mở, file `src/index.html` sẽ được khởi chạy, trong thẻ `body` ta sẽ có nội dung sau `<app-root></app-root>`. Chúng ta có thể thấy rằng `app-root` không phải là một thẻ HTML mà là một thẻ được chúng ta định nghĩa. Nó được định nghĩa trong file `app.component.ts`
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'learn-angular';
+}
+```
+
+Đoạn code trên dùng để định nghĩa thẻ `app-root` có template là từ file `app.component.html` với style trong file `app.component.css` và được xử lý bởi class `AppComponent`. Nếu bây giờ chúng ta thêm nội dung `<h3>I'm in the AppComponent!</h3>` vào file `app.component.html` và lưu lại, thì ứng dụng sẽ tự động rebuild và tải lại trang, lúc này chúng ta sẽ thấy thẻ h3 vừa thêm trên ứng dụng. Thẻ `app-root` trong thẻ `body` của file `index.html` sẽ được thay bằng nội dung trong file `app.component.html`
+
+Tại sao ứng dụng biết mà tải thẻ `<app-root>` từ file app.component.ts? Vì lúc ứng dụng khởi động, file `main.ts` cũng sẽ chạy, trong file này nó sẽ gọi `AppModule`, trong `AppModule` có khai báo AppComponent cho nên Angular biết `app-root` ở đâu để mà lấy.
+
+### 15. Components are Important
+
+Components là một khai niệm quan trọng trong Angular, mỗi thành phần của ứng dụng sẽ là một Component. Ví dụ với 1 trang web cơ bản, chúng ta sẽ có 1 component cho header, 1 component cho main, 1 component cho sidebar, 1 component cho footer. Mỗi component sẽ chứa code HTML, CSS và cả logic. Việc phân tách này sẽ rất hữu ích trong việc mở rộng cũng như mainternance. Nếu bạn muốn sửa header, bạn chỉ cần sửa component header và nó không ảnh hưởng đến các thành phần khác.
