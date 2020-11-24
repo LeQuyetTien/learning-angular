@@ -194,3 +194,17 @@ export class AppModule { }
 ```
 
 Chúng ta sẽ import ServerComponent từ đường dẫn './server/server.component' (không cần .ts, nó sẽ được thêm tự động bởi webpack) và thêm ServerComponent vào mục declarations.
+
+### 18. Using Custom Components
+
+Sau khi thêm ServerComponent vào AppModule. Bây giờ chúng ta đã có thể sử dụng nó.
+
+app.component.html
+
+```html
+<h3>I'm in the AppComponent!</h3>
+<hr />
+<app-server></app-server>
+```
+
+Lưu lại và ta sẽ thấy nội dung trong serve.component.html xuất hiện trên trang http://localhost:4200/
