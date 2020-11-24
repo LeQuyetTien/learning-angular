@@ -227,3 +227,20 @@ servers.component.html
 <app-server></app-server>
 <app-server></app-server>
 ```
+
+### 20. Working with Component Templates
+
+Chúng ta có thể sử dụng thuộc tính template thay cho templateUrl để thêm trực tiếp code HTML vào fiel .ts như sau:
+
+```ts
+@Component({
+  selector: 'app-servers',
+  template: `
+    <app-server></app-server>
+    <app-server></app-server>
+  `,
+  styleUrls: ['./servers.component.css']
+})
+```
+
+Sử dụng dấu nháy `` để viết trên nhiều dòng
