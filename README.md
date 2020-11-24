@@ -244,3 +244,7 @@ Chúng ta có thể sử dụng thuộc tính template thay cho templateUrl đ�
 ```
 
 Sử dụng dấu nháy `` để viết trên nhiều dòng
+
+### 21. Working with Component Styles
+
+Chúng ta có thể sử dụng styles thay cho styleUrls
