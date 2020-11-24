@@ -169,3 +169,28 @@ export class ServerComponent {}
 ```
 
 Cuối cùng thêm nội dung vào server.component.html
+
+### 17 Understanding the Role of AppModule and Component Declaration
+
+Vì Angular không tự động quét các file và thư mục trong ứng dụng, cho nên sau khi thêm mới một component, chúng ta cần thêm class component vào AppModule để Angular có thể biết và sử dụng.
+
+```ts
+...
+import { ServerComponent } from './server/server.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ServerComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+Chúng ta sẽ import ServerComponent từ đường dẫn './server/server.component' (không cần .ts, nó sẽ được thêm tự động bởi webpack) và thêm ServerComponent vào mục declarations.
