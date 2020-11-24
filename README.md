@@ -116,15 +116,15 @@ Khi chúng ta chạy `ng serve`, Angular sẽ tạo ra một development server 
 Khi trang này được mở, file `src/index.html` sẽ được khởi chạy, trong thẻ `body` ta sẽ có nội dung sau `<app-root></app-root>`. Chúng ta có thể thấy rằng `app-root` không phải là một thẻ HTML mà là một thẻ được chúng ta định nghĩa. Nó được định nghĩa trong file `app.component.ts`
 
 ```ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'learn-angular';
+  title = "learn-angular";
 }
 ```
 
@@ -135,3 +135,37 @@ Tại sao ứng dụng biết mà tải thẻ `<app-root>` từ file app.compone
 ### 15. Components are Important
 
 Components là một khai niệm quan trọng trong Angular, mỗi thành phần của ứng dụng sẽ là một Component. Ví dụ với 1 trang web cơ bản, chúng ta sẽ có 1 component cho header, 1 component cho main, 1 component cho sidebar, 1 component cho footer. Mỗi component sẽ chứa code HTML, CSS và cả logic. Việc phân tách này sẽ rất hữu ích trong việc mở rộng cũng như mainternance. Nếu bạn muốn sửa header, bạn chỉ cần sửa component header và nó không ảnh hưởng đến các thành phần khác.
+
+### 16. Creating a New Component
+
+Bây giờ chúng sẽ tạo một component gọi là `server`. Đầu tiên là tạo một thư mục /src/app/server và thêm vào đó file server.component.ts
+
+Đầu tiên, chúng ta sẽ tạo một class rong file server.component.ts
+
+```ts
+export class ServerComponent {}
+```
+
+Thêm export để đảm bảo class này có thể được gọi từ bên ngoài
+Tiếp theo chúng ta sẽ import Component decorator từ @angular/core sau đó thêm nó vào trước class như sau:
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({})
+export class ServerComponent {}
+```
+
+Tiếp theo là cập nhật Component decorator như sau:
+
+```ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-server",
+  templateUrl: "./server.component.html",
+})
+export class ServerComponent {}
+```
+
+Cuối cùng thêm nội dung vào server.component.html
