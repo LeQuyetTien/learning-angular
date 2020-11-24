@@ -208,3 +208,22 @@ app.component.html
 ```
 
 Lưu lại và ta sẽ thấy nội dung trong serve.component.html xuất hiện trên trang http://localhost:4200/
+
+### 19. Creating Components with the CLI Nesting Components
+
+Thay vì tạo một component thủ công như trước, bây giờ chúng ta sẽ tạo mới một component bằng Angular CLI
+
+```cmd
+$ ng generate component servers // OR ng g c servers
+```
+
+Thư mục servers tự động được tạo và cũng được tự động thêm vào AppModule
+
+Chúng ta có thể sử dụng thẻ app-serve trong Servers component như sau:
+
+servers.component.html
+
+```html
+<app-server></app-server>
+<app-server></app-server>
+```
