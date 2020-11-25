@@ -332,3 +332,27 @@ server.component.html
 ```html
 <p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
 ```
+
+### 26. Property Binding
+
+Để ví dụ cho trường hợp Property Binding, chúng ta sẽ thêm một giá trị là allowNewServer vào file TS và sử dụng với property như sau:
+
+```servers.component.ts
+export class ServersComponent implements OnInit {
+  allowNewServer: boolean = false;
+
+  constructor() {
+    setTimeout(() => {
+      this.allowNewServer = true;
+    }, 2000);
+  }
+}
+```
+
+```html
+<button class="btn btn-primary" [disabled]="allowNewServer">Add Server</button>
+```
+
+### 27. Property Binding vs String Interpolation
+
+Thêm [] cho property để chỉ ra rằng nó là một property động và có thể viết TS code vào trong đó. Có thể là lấy giá trị từ TS hoặc một biểu thức
