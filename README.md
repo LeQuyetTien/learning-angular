@@ -385,3 +385,25 @@ How do you know to which Properties or Events of HTML Elements you may bind? You
 Important: For events, you don't bind to onclick but only to click (=> (click)).
 
 The MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. Googling for `YOUR_ELEMENT properties` or `YOUR_ELEMENT events` should yield nice results.
+
+### 30. Passing and Using Data with Event Binding
+
+servers.component.ts
+
+```ts
+serverName = '';
+
+onUpdateServerName(event: any): void {
+  this.serverName = event.target.value;
+}
+```
+
+servers.component.html
+
+```html
+<label>Server Name</label>
+<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+<p>{{ serverName }}</p>
+```
+
+> Sử dụng **$event** để truyền event data
