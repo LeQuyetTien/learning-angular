@@ -427,3 +427,13 @@ Sử dụng **[(ngModel)]** như sau:
 ```
 
 Thẻ input với ngModel có thể vừa nhận giá trị từ TS, vừa có thể truyền dữ liệu sang TS. Còn với Event Binding thì chỉ có thể truyền dữ liệu sang TS.
+
+### 33. Combining all Forms of Databinding
+
+Chỉnh sửa lại Demo app.
+
+```ts
+onCreateServer(): void {
+  this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
+}
+```
