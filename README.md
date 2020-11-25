@@ -224,8 +224,7 @@ Chúng ta có thể sử dụng thẻ app-serve trong Servers component như sau
 servers.component.html
 
 ```html
-<app-server></app-server>
-<app-server></app-server>
+<app-server></app-server> <app-server></app-server>
 ```
 
 ### 20. Working with Component Templates
@@ -268,3 +267,26 @@ Chúng ta có thể sử dụng nhiều loại selector khác nhau:
 > :not(sub_selector): Select only if the element does not match the sub_selector.
 >
 > selector1, selector2: Select if either selector1 or selector2 matches.
+
+### 23. [OPTIONAL] Assignment Solution
+
+Sau khi tạo Component bằng tay. Nhớ thêm vào AppModule
+
+Chỉ có thế thôi mà cũng tạo một bài riêng. Ông này cũng rãnh ghê :))
+
+### 24. What is Databinding
+
+Bây giờ chúng ta sẽ tìm hiểu Databinding. Vậy Databinding cái gì?
+
+Databinding là giao tiếp giữa Typescript code (Business logic) và Template (HTML).
+
+TS xuất dữ liệu ra HTML bằng 2 cách:
+
+- **String Interpolation** ({{ data }})
+- **Property Binding** ([property]="data")
+
+TS nhận lại phản hồi từ HTML:
+
+- **Event Binding** ((event)="expression")
+
+Gộp 2 cái lại chúng ta có: **Two-way-binding** ([(ngModel)]="data")
