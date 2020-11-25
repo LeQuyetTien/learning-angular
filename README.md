@@ -290,3 +290,45 @@ TS nhận lại phản hồi từ HTML:
 - **Event Binding** ((event)="expression")
 
 Gộp 2 cái lại chúng ta có: **Two-way-binding** ([(ngModel)]="data")
+
+### 25. String Interpolation
+
+Để sử dụng string interpolation, chúng ta sẽ khai báo biến trong file TS sau đó xử dụng ở file HTML như sau:
+
+server.component.ts
+
+```ts
+export class ServerComponent {
+    serverId: number = 10;
+    serverStatus: string = 'offline';
+}
+```
+
+server.component.html
+
+```html
+<p>{{ 'Server' }} with ID {{ serverId }} is {{ serverStatus }}</p>
+```
+
+> Giá trị kiểu string hay number đều có thể sử dụng
+
+Chúng ta cũng có thể tạo một function để trả về giá trị serrverStatus sau đó gọi hàm trong file HTML như thế này:
+
+server.component.ts
+
+```ts
+export class ServerComponent {
+    serverId: number = 10;
+    serverStatus: string = 'offline';
+
+    getServerStatus() {
+        return this.serverStatus;
+    }
+}
+```
+
+server.component.html
+
+```html
+<p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
+```
