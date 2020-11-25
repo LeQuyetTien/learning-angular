@@ -506,3 +506,13 @@ Sử dụng **ngClass** để thêm hoặc xóa class trong DOM như sau:
 ```html
 <p [ngClass]="{online: serverStatus === 'online'}">...</p>
 ```
+
+### 40. Outputting Lists with ngFor
+
+Sử dụng ngFor để tạo danh sách như sau:
+
+```html
+<app-server *ngFor="let server of servers"></app-server>
+```
+
+Khai báo biết server duyệt qua từng phần tử trong servers
