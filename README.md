@@ -407,3 +407,23 @@ servers.component.html
 ```
 
 > Sử dụng **$event** để truyền event data
+
+### 31. Important FormsModule is Required for Two-Way-Binding
+
+Important: For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+
+You then also need to add the import from @angular/forms  in the app.module.ts file:
+
+import { FormsModule } from '@angular/forms'; 
+
+### 32. Two-Way-Databinding
+
+Sử dụng **[(ngModel)]** như sau:
+
+```html
+<label>Server Name</label>
+<input type="text" class="form-control" [(ngModel)]="serverName">
+<p>{{ serverName }}</p>
+```
+
+Thẻ input với ngModel có thể vừa nhận giá trị từ TS, vừa có thể truyền dữ liệu sang TS. Còn với Event Binding thì chỉ có thể truyền dữ liệu sang TS.
