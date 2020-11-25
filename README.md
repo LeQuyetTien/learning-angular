@@ -299,8 +299,8 @@ server.component.ts
 
 ```ts
 export class ServerComponent {
-    serverId: number = 10;
-    serverStatus: string = 'offline';
+  serverId: number = 10;
+  serverStatus: string = "offline";
 }
 ```
 
@@ -318,12 +318,12 @@ server.component.ts
 
 ```ts
 export class ServerComponent {
-    serverId: number = 10;
-    serverStatus: string = 'offline';
+  serverId: number = 10;
+  serverStatus: string = "offline";
 
-    getServerStatus() {
-        return this.serverStatus;
-    }
+  getServerStatus() {
+    return this.serverStatus;
+  }
 }
 ```
 
@@ -356,3 +356,32 @@ export class ServersComponent implements OnInit {
 ### 27. Property Binding vs String Interpolation
 
 Thêm [] cho property để chỉ ra rằng nó là một property động và có thể viết TS code vào trong đó. Có thể là lấy giá trị từ TS hoặc một biểu thức
+
+### 28. Event Binding
+
+servers.component.ts
+
+```ts
+serverCreationStatus: string = 'No server was created!';
+
+onCreateServer() {
+  this.serverCreationStatus = 'Server was created!';
+}
+```
+
+servers.component.html
+
+```html
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+<p>{{ serverCreationStatus }}</p>
+```
+
+> Đặt tên event trong ()
+
+### 29. Bindable Properties and Events
+
+How do you know to which Properties or Events of HTML Elements you may bind? You can basically bind to all Properties and Events - a good idea is to `console.log()` the element you're interested in to see which properties and events it offers.
+
+Important: For events, you don't bind to onclick but only to click (=> (click)).
+
+The MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. Googling for `YOUR_ELEMENT properties` or `YOUR_ELEMENT events` should yield nice results.
