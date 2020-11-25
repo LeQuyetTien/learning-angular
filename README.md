@@ -461,3 +461,14 @@ ngIf, ngFor, ... là các directives
 ```
 
 Nếu `serverCreated==true` thì chúng ta sẽ thấy thẻ p. Ngược lại, nếu `serverCreated==false`, thẻ p sẽ không được tạo.
+
+### 37. Enhancing ngIf with an Else Condition
+
+Sử dụng ngIf else với ng-template như sau:
+
+```html
+<p *ngIf="serverCreated; else noServer">Server was created! Name is {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No server was created!</p>
+</ng-template>
+```
