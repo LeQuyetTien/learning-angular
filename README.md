@@ -437,3 +437,27 @@ onCreateServer(): void {
   this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
 }
 ```
+
+### 34. [OPTIONAL] Assignment Solution
+
+Chúng ta có thể sử dụng biểu thức cho property cũng như event binding như sau:
+
+```html
+<button class="btn btn-primary" [disabled]="serverName == ''" (click)="serverName = ''">Reset Server</button>
+```
+
+### 35. Understanding Directives
+
+Directives are Instructions in the DOM
+
+Directives cũng tương tự như Component nhưng nó thường được sử dụng trong DOM
+
+ngIf, ngFor, ... là các directives
+
+###. 36. Using ngIf to Output Data Conditionally
+
+```html
+<p *ngIf="serverCreated">Server was created! Name is {{ serverName }}</p>
+```
+
+Nếu `serverCreated==true` thì chúng ta sẽ thấy thẻ p. Ngược lại, nếu `serverCreated==false`, thẻ p sẽ không được tạo.
