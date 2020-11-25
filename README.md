@@ -498,3 +498,11 @@ hoặc
 ```html
 <p [ngStyle]="{'background-color': 'blue'}">...</p>
 ```
+
+### 39. Applying CSS Classes Dynamically with ngClass
+
+Sử dụng **ngClass** để thêm hoặc xóa class trong DOM như sau:
+
+```html
+<p [ngClass]="{online: serverStatus === 'online'}">...</p>
+```
