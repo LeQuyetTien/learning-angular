@@ -372,7 +372,13 @@ onCreateServer() {
 servers.component.html
 
 ```html
-<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
 <p>{{ serverCreationStatus }}</p>
 ```
 
@@ -402,7 +408,7 @@ servers.component.html
 
 ```html
 <label>Server Name</label>
-<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+<input type="text" class="form-control" (input)="onUpdateServerName($event)" />
 <p>{{ serverName }}</p>
 ```
 
@@ -410,11 +416,11 @@ servers.component.html
 
 ### 31. Important FormsModule is Required for Two-Way-Binding
 
-Important: For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+Important: For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel directive. This is done by adding the FormsModule to the imports[] array in the AppModule.
 
-You then also need to add the import from @angular/forms  in the app.module.ts file:
+You then also need to add the import from @angular/forms in the app.module.ts file:
 
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 ### 32. Two-Way-Databinding
 
@@ -422,7 +428,7 @@ Sử dụng **[(ngModel)]** như sau:
 
 ```html
 <label>Server Name</label>
-<input type="text" class="form-control" [(ngModel)]="serverName">
+<input type="text" class="form-control" [(ngModel)]="serverName" />
 <p>{{ serverName }}</p>
 ```
 
@@ -443,7 +449,13 @@ onCreateServer(): void {
 Chúng ta có thể sử dụng biểu thức cho property cũng như event binding như sau:
 
 ```html
-<button class="btn btn-primary" [disabled]="serverName == ''" (click)="serverName = ''">Reset Server</button>
+<button
+  class="btn btn-primary"
+  [disabled]="serverName == ''"
+  (click)="serverName = ''"
+>
+  Reset Server
+</button>
 ```
 
 ### 35. Understanding Directives
@@ -467,8 +479,22 @@ Nếu `serverCreated==true` thì chúng ta sẽ thấy thẻ p. Ngược lại, 
 Sử dụng ngIf else với ng-template như sau:
 
 ```html
-<p *ngIf="serverCreated; else noServer">Server was created! Name is {{ serverName }}</p>
+<p *ngIf="serverCreated; else noServer">
+  Server was created! Name is {{ serverName }}
+</p>
 <ng-template #noServer>
-    <p>No server was created!</p>
+  <p>No server was created!</p>
 </ng-template>
+```
+
+### 38. Styling Elements Dynamically with ngStyle
+
+```html
+<p [ngStyle]="{backgroundColor: getColor()}">...</p>
+```
+
+hoặc
+
+```html
+<p [ngStyle]="{'background-color': 'blue'}">...</p>
 ```
