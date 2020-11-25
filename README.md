@@ -520,3 +520,9 @@ Khai báo biết server duyệt qua từng phần tử trong servers
 ### 41. [OPTIONAL] Assignment Solution
 
 Sử dụng ngIf để ẩn/hiện password
+
+### 42. Getting the Index when using ngFor
+
+```html
+<div *ngFor="let server of servers; let i = index"></div>
+```
