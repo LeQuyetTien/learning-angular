@@ -548,3 +548,22 @@ Also see this lecture - I do show the complete setup process there: https://www.
 ### 46. Setting up the Application
 
 Khôi phục lại dự án để bắt đầu dự án mới. Thay vì phải tạo mới dự án và cài đặt Bootstrap lại.
+
+### 47. Creating the Components
+
+Tạo HeaderComponent bằng tay.
+Tạo RecipesComponent bằng CLI:
+
+```cmd
+ng g c recipes --skipTests true
+```
+
+> Thêm `--skipTest true` nếu không cần file test .spec.ts
+
+> Component không nhất thiết phải nằm ở thư mục `app`
+
+Chúng ta sẽ tạo `RecipeDetailComponent` trong thư mục `recipes` như sau:
+
+```cmd
+ng g c recipes/recipe-detail --skipTests true
+```
