@@ -651,3 +651,5 @@ export class Ingredient {
   constructor(public name: string, public amount: number) {}
 }
 ```
+
+### 57. Creating and Outputting the Shopping List
