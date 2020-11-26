@@ -629,3 +629,25 @@ export class Recipe {
 ### 54. Displaying Recipe Details
 
 ### 55. Working on the ShoppingListComponent
+
+### 56. Creating an Ingredient Model
+
+```ts
+export class Ingredient {
+  public name: string;
+  public amount: number;
+
+  constructor(name: string, amount: number) {
+    this.name = name;
+    this.amount = amount;
+  }
+}
+```
+
+Viết gọn lại như sau:
+
+```ts
+export class Ingredient {
+  constructor(public name: string, public amount: number) {}
+}
+```
