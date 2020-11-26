@@ -655,3 +655,23 @@ export class Ingredient {
 ### 57. Creating and Outputting the Shopping List
 
 ### 58. Adding a Shopping List Edit Section
+
+### 59. Wrap Up Next Steps
+
+## Debugging
+
+### 60. Understanding Angular Error Messages
+
+Khi gặp lỗi thì nhớ mở `Console` trong `Debug Mode` của trình duyệt để kiểm tra. (`F12` in `Chrome` on `Windows`)
+
+> Lỗi xuất hiện màu đỏ và lý do thường nằm ở dòng đầu tiên của thông báo lỗi
+
+### 61. Debugging Code in the Browser Using Sourcemaps
+
+Lưu ý: `Typescript` không chạy trực tiếp trong trình duyệt, khi chạy, code `Typescript` sẽ được biên dịch sang `Javascript`. Vì `Javascript` hỗ trợ `source map`, nên khi click và code `Javascript` trong thẻ `Sources` của `Debug Mode` thì nó sẽ link tới đoạn code tương ứng trong file `Typescript`
+
+> Chúng ta có thể vào số dòng của file `Javascript` trong `Sources` để chạy `debug`
+
+### 62. Using Augury to Dive into Angular Apps
+
+Augury là một `extension` trong `Chrome` dùng để debug app
