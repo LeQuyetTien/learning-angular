@@ -581,3 +581,23 @@ shopping-list/shopping-edit
 ### 49. Adding a Navigation Bar
 
 ### 50. Alternative Non-Collapsable Navigation Bar
+
+### 51. Creating a Recipe Model
+
+Chúng ta sẽ tạo một `Recipe` Model là một `class` trong `OOP` với các thuộc tính và gán giá trị trong hàm `constructor`
+
+```ts
+export class Recipe {
+  public name: string;
+  public description: string;
+  public imagePath: string;
+
+  constructor(name: string, desc: string, imagePath: string) {
+    this.name = name;
+    this.description = desc;
+    this.imagePath = imagePath;
+  }
+}
+```
+
+### 52. Adding Content to the Recipes Components
