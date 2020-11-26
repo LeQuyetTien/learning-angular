@@ -526,3 +526,25 @@ Sử dụng ngIf để ẩn/hiện password
 ```html
 <div *ngFor="let server of servers; let i = index"></div>
 ```
+
+## Course Project - The Basics
+
+Trong phần này chúng ta sẽ tạo một project shopping list để thực hành những cái đã học được.
+
+### 44. Planning the App
+
+![Planling the App](https://i.ibb.co/tsnwr3b/vlcsnap-2020-11-26-07h32m56s412.png)
+
+### 45. Installing Bootstrap Correctly
+
+In the next lecture, we set up the course project. For that, we'll install the Bootstrap CSS Framework.
+
+In this course, we use version 3 of the framework, install it via `npm install --save bootstrap@3`  => The `@3`  is important!
+
+Additionally, when using a project created with Angular CLI 6+ (check via `ng -v`), you'll have an `angular.json`  file instead of an .`angular-cli.json`  file. In that file, you still need to add Bootstrap to the styles[]  array as shown in the next video, but the path should be `node_modules/bootstrap/dist/css/bootstrap.min.css` , NOT `../node_modules/bootstrap/dist/css/bootstrap.min.css`. The leading `../`  must not be included.
+
+Also see this lecture - I do show the complete setup process there: https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655614/
+
+### 46. Setting up the Application
+
+Khôi phục lại dự án để bắt đầu dự án mới. Thay vì phải tạo mới dự án và cài đặt Bootstrap lại.
