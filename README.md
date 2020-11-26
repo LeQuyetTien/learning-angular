@@ -675,3 +675,9 @@ Lưu ý: `Typescript` không chạy trực tiếp trong trình duyệt, khi ch�
 ### 62. Using Augury to Dive into Angular Apps
 
 Augury là một `extension` trong `Chrome` dùng để debug app
+
+## Components  Databinding Deep Dive
+
+### 63. Module Introduction
+
+Understranding Components & Databinding
