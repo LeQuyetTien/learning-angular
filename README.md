@@ -715,3 +715,15 @@ Trong app.component.html chúng ta sẽ thêm vào thuộc tính element cho th�
 ```html
 <app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement"></app-server-element>
 ```
+
+### 67. Asigning an Alias to Custom Properties
+
+Thay vì sử dụng tên biến `element` từ `ServerElementComponent` như là tên của thuộc tính trong thẻ `app-server-element`. Chúng ta có thể sử dụng Alias để thay đổi tên của thuộc tính như sau:
+
+Thay đổi `@Input()` thành` @Input('srvElement')`
+
+Trong app.component.html, thuộc tính element bây giờ sẽ được đổi thành srvElement
+
+```html
+<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement"></app-server-element>
+```
