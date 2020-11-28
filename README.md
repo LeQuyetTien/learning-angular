@@ -681,3 +681,7 @@ Augury là một `extension` trong `Chrome` dùng để debug app
 ### 63. Module Introduction
 
 Understranding Components & Databinding
+
+### 64. Splitting Apps into Components
+
+Tách code từ AppComponent to CockpitComponent và ServerElementComponent
