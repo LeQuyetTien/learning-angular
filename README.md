@@ -685,3 +685,33 @@ Understranding Components & Databinding
 ### 64. Splitting Apps into Components
 
 Tách code từ AppComponent to CockpitComponent và ServerElementComponent
+
+### 65. Property Event Binding Overview
+
+### 66. Binding to Custom Properties
+
+Trong bài này chúng ta học được cách sử dụng Input
+
+Trong file `AppComponent` chúng ta có 1 mảng `serverElements`
+
+```ts
+serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
+```
+
+Trong app-component chúng ta sử dụng ngFor để duyệt qua từng phần tử của mảng `serverElements` và đưa đưa vào `app-server-element`
+
+Vấn đề bây giờ là làm sao từ app.component.html chúng ta truyền được từng giá trị của mảng `serverElements` qua ServerElementComponent để hiển thị? Câu trả lời là sử dụng `@Input`
+
+Trong ServerElementComponent chúng ta sẽ khai báo một `Input` tên là `element` như sau:
+
+```ts
+@Input() element: { type: string, name: string, content: string };
+```
+
+Nhớ import `Input` từ `@angular/core`. Mục đích câu lệnh trên là để khai báo răng element là 1 object có 3 giá trị là `type, name, string` và nó là sẽ nhận giá trị từ bên ngoài thông qua selector `app-server-element`
+
+Trong app.component.html chúng ta sẽ thêm vào thuộc tính element cho thẻ `app-server-element` như sau:
+
+```html
+<app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement"></app-server-element>
+```
