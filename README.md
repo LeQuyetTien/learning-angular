@@ -116,15 +116,15 @@ Khi chúng ta chạy `ng serve`, Angular sẽ tạo ra một development server 
 Khi trang này được mở, file `src/index.html` sẽ được khởi chạy, trong thẻ `body` ta sẽ có nội dung sau `<app-root></app-root>`. Chúng ta có thể thấy rằng `app-root` không phải là một thẻ HTML mà là một thẻ được chúng ta định nghĩa. Nó được định nghĩa trong file `app.component.ts`
 
 ```ts
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = "learn-angular";
+  title = 'learn-angular';
 }
 ```
 
@@ -150,7 +150,7 @@ Thêm export để đảm bảo class này có thể được gọi từ bên ng
 Tiếp theo chúng ta sẽ import Component decorator từ @angular/core sau đó thêm nó vào trước class như sau:
 
 ```ts
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({})
 export class ServerComponent {}
@@ -159,11 +159,11 @@ export class ServerComponent {}
 Tiếp theo là cập nhật Component decorator như sau:
 
 ```ts
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-server",
-  templateUrl: "./server.component.html",
+  selector: 'app-server',
+  templateUrl: './server.component.html',
 })
 export class ServerComponent {}
 ```
@@ -300,7 +300,7 @@ server.component.ts
 ```ts
 export class ServerComponent {
   serverId: number = 10;
-  serverStatus: string = "offline";
+  serverStatus: string = 'offline';
 }
 ```
 
@@ -319,7 +319,7 @@ server.component.ts
 ```ts
 export class ServerComponent {
   serverId: number = 10;
-  serverStatus: string = "offline";
+  serverStatus: string = 'offline';
 
   getServerStatus() {
     return this.serverStatus;
@@ -676,7 +676,7 @@ Lưu ý: `Typescript` không chạy trực tiếp trong trình duyệt, khi ch�
 
 Augury là một `extension` trong `Chrome` dùng để debug app
 
-## Components  Databinding Deep Dive
+## Components Databinding Deep Dive
 
 ### 63. Module Introduction
 
@@ -695,7 +695,9 @@ Trong bài này chúng ta học được cách sử dụng Input
 Trong file `AppComponent` chúng ta có 1 mảng `serverElements`
 
 ```ts
-serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test!'}];
+serverElements = [
+  { type: 'server', name: 'Testserver', content: 'Just a test!' },
+];
 ```
 
 Trong app-component chúng ta sử dụng ngFor để duyệt qua từng phần tử của mảng `serverElements` và đưa đưa vào `app-server-element`
@@ -713,7 +715,10 @@ Nhớ import `Input` từ `@angular/core`. Mục đích câu lệnh trên là đ
 Trong app.component.html chúng ta sẽ thêm vào thuộc tính element cho thẻ `app-server-element` như sau:
 
 ```html
-<app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement"></app-server-element>
+<app-server-element
+  *ngFor="let serverElement of serverElements"
+  [element]="serverElement"
+></app-server-element>
 ```
 
 ### 67. Asigning an Alias to Custom Properties
@@ -725,5 +730,75 @@ Thay đổi `@Input()` thành` @Input('srvElement')`
 Trong app.component.html, thuộc tính element bây giờ sẽ được đổi thành srvElement
 
 ```html
-<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement"></app-server-element>
+<app-server-element
+  *ngFor="let serverElement of serverElements"
+  [srvElement]="serverElement"
+></app-server-element>
 ```
+
+### 68. Binding to Custom Events
+
+Bài trước chúng ta đã học cách sử dụng `Input`, bài này chúng ta sẽ học về `Output`
+
+Mục tiêu là chúng ta sẽ tạo một `Custom Event`. Vậy `Custom Event` là cái gì? Những cái như (click), (onChange), ... được gọi là `event`. Vậy `Custom Event` là `event` mà do chúng ta tự tạo ra ví dụ như `(serverCreated)`, (`blueprintCreated)`
+
+À, đã hiểu. Vậy làm sao để tạo `Custom Event`?
+
+Trong bài này, chúng ta sẽ sử dụng Custom Event để truyền data khi click vào button từ CockpitComponent sang AppComponent
+
+Trong `app.component.html` chúng ta sẽ thêm 2 Custom Event là `(serverCreated)`, (`blueprintCreated)` vào thẻ `app-cockpit` để thực hiện 2 funtion là `onServerAdded($event)` và `onBlueprintAdded($event)` với $event là data từ CockpitComponent truyền sang có kiểu dữ liệu là một object có 2 giá trị như sau: `{ serverName: string; serverContent: string }`.
+
+```html
+<app-cockpit
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"
+></app-cockpit>
+```
+
+Tiếp theo chúng ta sẽ định nghĩa 2 `Custom Event` trong CockpitComponent như sau:
+
+```ts
+@Output() serverCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
+@Output()blueprintCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
+```
+
+Sử dụng @Output để có thể sử dụng Custom Event từ bên ngoài
+
+> Nhớ import Output và EventEmitter từ @angular/core
+
+Trong file `cockpit.component.html` chúng ta sẽ có 2 button với 2 function là `onAddServer()` và `onAddBlueprint()`
+
+```html
+<div class="col-xs-12">
+  <p>Add new Servers or blueprints!</p>
+  <label>Server Name</label>
+  <input type="text" class="form-control" [(ngModel)]="newServerName" />
+  <label>Server Content</label>
+  <input type="text" class="form-control" [(ngModel)]="newServerContent" />
+  <br />
+  <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+  <button class="btn btn-primary" (click)="onAddBlueprint()">
+    Add Server Blueprint
+  </button>
+</div>
+```
+
+Trong `cockpit.component.ts` chúng ta sẽ định nghĩa như sau:
+
+```ts
+onAddServer() {
+    this.serverCreated.emit({
+      serverName: this.newServerName,
+      serverContent: this.newServerContent,
+    });
+  }
+
+  onAddBlueprint() {
+    this.blueprintCreated.emit({
+      serverName: this.newServerName,
+      serverContent: this.newServerContent,
+    });
+  }
+```
+
+Chúng ta Sử dụng `this.serverCreated.emit()` và `this.blueprintCreated.emit()` để truyền data sang AppComponent
