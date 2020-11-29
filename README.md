@@ -996,3 +996,16 @@ server-element.component.html
   </div>
 </div>
 ```
+
+### 77. Understanding the Component Lifecycle
+
+Khi chúng ta tạo component bằng CLI, chúng ta sẽ thấy hàm `ngOnInit` bên trong file TS của component. Vậy nó dùng để làm gì?
+
+- ngOnChanges: được gọi ngay khi một component được tạo hay giá trị của @Input thay đổi
+- ngOnInit: được gọi một khi component khởi tạo, sau `constructor`
+- ngDoCheck: được gọi khi có sự thay đổi như khi nhập input, click button, ...
+- ngAfterContentInit: được gọi sau khi content (ng-content) được gắn vào view
+- ngAfterContentChecked: được gọi khi nội dung ng-content có thay đổi
+- ngAfterViewInit: được gọi khi tất cả thành phần đã được render
+- ngAfterViewChecked: được gọi khi có sự thay đổi sau khi tất cả thành phần đã được render
+
