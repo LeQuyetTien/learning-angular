@@ -1009,3 +1009,30 @@ Khi chúng ta tạo component bằng CLI, chúng ta sẽ thấy hàm `ngOnInit` 
 - ngAfterViewInit: được gọi khi tất cả thành phần đã được render
 - ngAfterViewChecked: được gọi khi có sự thay đổi sau khi tất cả thành phần đã được render
 
+### 78. Seeing Lifecycle Hooks in Action
+
+Để sử dụng ngOnChanges, chúng ta cần import từ @angular/core và thêm vào implements của Component class như sau:
+
+```ts
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+
+export class ServerElementComponent implements OnInit, OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('OnChanges called');
+  }
+}
+```
+
+`ngOnChanges` được gọi sau `constructor` và trước `ngOnInit`
+
+Khi chúng ta tạo mới một giá trị thì cả `constructor`, `ngOnInit` và `ngOnChanges` đều được gọi. Nhưng khi chúng ta thay đổi giá trị thì chỉ `ngOnChanges` được gọi.
+
+`ngDoCheck` được gọi sau `ngOnInit`, khi có bất kỳ thay đổi nào trên component
+
+`ngAfterContentInit` được gọi sau `ngDoCheck`, và chỉ chạy 1 lần
+
+`ngAfterContentChecked` được gọi ngay sau mỗi `ngDoCheck`
+
+`ngAfterViewInit` và `ngAfterViewChecked` tương tự cũng như chạy sau `ngAfterContentInit` và `ngAfterContentChecked`
+
+`ngOnDestroy` được gọi khi một component bị destroy
