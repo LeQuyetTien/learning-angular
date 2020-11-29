@@ -926,3 +926,40 @@ bằng
 Sử dụng `{ static: true }` nếu bạn cần truy cập trong ngOnInit(). Nếu không thì sử dụng `false`.
 
 Nếu bạn sử dụng Angular 9, bạn chỉ cần thêm { static: true } (if needed) chứ không cần thêm { static: false }.
+
+### 75. Getting Access to the Template DOM with ViewChild
+
+Trong bài này chúng ta sẽ học về `@ViewChild`
+
+Chúng ta sử dụng Local Reference trong HTML và add ViewChild trong TS như sau:
+
+cockpit.component.html
+
+```html
+<!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+<input type="text" class="form-control" #serverContentInput />
+```
+
+cockpit.component.ts
+
+```ts
+@ViewChild('serverContentInput') serverContentInput: ElementRef;
+
+constructor() {}
+
+ngOnInit(): void {}
+
+onAddServer(nameInput: HTMLInputElement) {
+  this.serverCreated.emit({
+    serverName: nameInput.value,
+    serverContent: this.serverContentInput.nativeElement.value,
+  });
+}
+
+onAddBlueprint(nameInput: HTMLInputElement) {
+  this.blueprintCreated.emit({
+    serverName: nameInput.value,
+    serverContent: this.serverContentInput.nativeElement.value,
+  });
+}
+```
