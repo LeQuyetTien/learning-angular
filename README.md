@@ -802,3 +802,22 @@ onAddServer() {
 ```
 
 Chúng ta Sử dụng `this.serverCreated.emit()` và `this.blueprintCreated.emit()` để truyền data sang AppComponent
+
+### 69. Asigning an Alias to Custom Events
+
+Tương tự hàm `Input`, với hàm `Output` chúng ta cũng có thể sử dụng Alias như sau:
+
+app.component.html
+
+```html
+<app-cockpit
+  (serverCreated)="onServerAdded($event)"
+  (bpCreated)="onBlueprintAdded($event)"
+></app-cockpit>
+```
+
+cockpit.component.ts
+
+```ts
+@Output('bpCreated')blueprintCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
+```
