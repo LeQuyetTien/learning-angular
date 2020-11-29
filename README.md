@@ -1014,7 +1014,14 @@ Khi chúng ta tạo component bằng CLI, chúng ta sẽ thấy hàm `ngOnInit` 
 Để sử dụng ngOnChanges, chúng ta cần import từ @angular/core và thêm vào implements của Component class như sau:
 
 ```ts
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 export class ServerElementComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
@@ -1036,3 +1043,23 @@ Khi chúng ta tạo mới một giá trị thì cả `constructor`, `ngOnInit` v
 `ngAfterViewInit` và `ngAfterViewChecked` tương tự cũng như chạy sau `ngAfterContentInit` và `ngAfterContentChecked`
 
 `ngOnDestroy` được gọi khi một component bị destroy
+
+### 79. Lifecycle Hooks and Template Access
+
+Bây giờ chúng ta thử tạo một ViewChild và console.log nó ra bên trong `ngOnInit` và `ngAfterViewInit` như sau:
+
+```ts
+@ViewChild('heading') header: ElementRef;
+
+ngOnInit(): void {
+  console.log('ngOnInit called');
+  console.log(this.header.nativeElement.textContent);
+}
+
+ngAfterViewInit() {
+  console.log('ngAfterViewInit called');
+  console.log(this.header.nativeElement.textContent);
+}
+```
+
+Kết quả console.log trong `ngOnInit` sẽ bị lỗi vì `this.header.nativeElement` is undefined, còn trong ngAfterViewInit sẽ có giá trị.
