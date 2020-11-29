@@ -1064,6 +1064,8 @@ ngAfterViewInit() {
 
 Kết quả console.log trong `ngOnInit` sẽ bị lỗi vì `this.header.nativeElement` is undefined, còn trong ngAfterViewInit sẽ có giá trị.
 
+### 80. ContentChild() in Angular 8
+
 ### 81. Getting Access to ng-content With ContentChild
 
 Trong bài này chúng ta sẽ học cách sử dụng `@ContentChild` để lấy giá trị của một `Local Reference` là `#contentParagraph` từ `ng-content` trong `app.component.html`
@@ -1092,3 +1094,7 @@ server-element.component.ts
 ```ts
 @ContentChild('contentParagraph') paragraph: ElementRef;
 ```
+
+### 82. Wrap Up
+
+### 83. [OPTIONAL] Assignment Solution
