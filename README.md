@@ -828,4 +828,39 @@ Cách tiếp cận sử dụng @Input and @Output chỉ phù hợp trong trườ
 
 ### 71. Understanding View Encapsulation
 
-Vẫn chưa hiểu lắm :v
+Khi chạy thử ứng dụng, chúng ta thấy rằng khi tạo Server Blueprint thì giá trị của nó không được chuyển sang màu xanh. Mặc dù Trong app.component.css chúng ta đã định nghĩa `p { color: blue; }`.
+
+Khi inspect ra thì chúng ta sẽ thấy trong các thẻ chúng ta sử dụng trong các component sẽ có thêm các thuộc tính như `_ngcontent-poy-c42`. Đây là những giá trị mà Angular tạo ra để phân tách style cho từng component.
+
+Bây giờ, để đổi màu của Server Bluesprint thì chúng ta cần phải thêm đoạn code vào trong component sử dụng nó là server-element.component.css như sau:
+
+```css
+p {
+  color: blue;
+}
+```
+
+### 72. More on View Encapsulation
+
+Bình thường file `CSS` bên trong một component chỉ được áp dụng cho component đó.
+
+Tuy nhiên khi thêm thuộc tính `encapsulation` vào `Component` thì những style trong component sẽ được áp dụng `Global`
+
+```ts
+@Component({
+  selector: 'app-server-element',
+  templateUrl: './server-element.component.html',
+  styleUrls: ['./server-element.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+```
+
+`server-element.component.css`
+
+```css
+label {
+  color: red;
+}
+```
+
+Sau khi chúng ta thêm style trên vào thì tất cả thẻ label trong ứng dụng đều chuyển sang màu đỏ
