@@ -864,3 +864,45 @@ label {
 ```
 
 Sau khi chúng ta thêm style trên vào thì tất cả thẻ label trong ứng dụng đều chuyển sang màu đỏ
+
+### 73. Using Local References in Templates
+
+Thay vì sử dụng ngModel cho biến newSererName, chúng ta có thể sử dụng Local References như sau:
+
+```html
+<!-- <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
+<input type="text" class="form-control" #serverNameInput />
+<label>Server Content</label>
+
+<!-- <button class="btn btn-primary" (click)="onAddServer()">Add Server</button> -->
+<button class="btn btn-primary" (click)="onAddServer(serverNameInput)">
+  Add Server
+</button>
+```
+
+> Lưu ý: Local References chỉ có thể sử dụng trong file HTML
+
+Chúng ta sẽ cập nhật lại file `cockpit.component.ts` như sau:
+
+```ts
+// newServerName = '';
+newServerContent = '';
+
+constructor() {}
+
+ngOnInit(): void {}
+
+onAddServer(nameInput: HTMLInputElement) {
+  this.serverCreated.emit({
+    serverName: nameInput.value,
+    serverContent: this.newServerContent,
+  });
+}
+
+onAddBlueprint(nameInput: HTMLInputElement) {
+  this.blueprintCreated.emit({
+    serverName: nameInput.value,
+    serverContent: this.newServerContent,
+  });
+}
+```
