@@ -906,3 +906,23 @@ onAddBlueprint(nameInput: HTMLInputElement) {
   });
 }
 ```
+
+### 74. ViewChild() in Angular 8
+
+Trong Angular 8+, cú pháp `@ViewChild()` bị thay đổi như sau:
+
+Thay:
+
+```ts
+@ViewChild('serverContentInput') serverContentInput: ElementRef;
+```
+
+bằng
+
+```ts
+@ViewChild('serverContentInput', {static: true}) serverContentInput: ElementRef;
+```
+
+Sử dụng `{ static: true }` nếu bạn cần truy cập trong ngOnInit(). Nếu không thì sử dụng `false`.
+
+Nếu bạn sử dụng Angular 9, bạn chỉ cần thêm { static: true } (if needed) chứ không cần thêm { static: false }.
