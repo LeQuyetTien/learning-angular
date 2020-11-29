@@ -963,3 +963,36 @@ onAddBlueprint(nameInput: HTMLInputElement) {
   });
 }
 ```
+
+### 76. Projecting Content into Components with ng-content
+
+Mặc định, nội dung bên trong thẻ đóng và thẻ mở của một component sẽ không được áp dụng, Angular không quan tâm đến chúng. Nhưng chúng ta có thể thay đổi nó bằng cách sử dụng `<ng-content></ng-content>` trong template của component như sau:
+
+app.component.html
+
+```html
+<app-server-element
+  *ngFor="let serverElement of serverElements"
+  [srvElement]="serverElement"
+>
+  <p>
+    <strong *ngIf="serverElement.type === 'server'" style="color: red"
+      >{{ serverElement.content }}</strong
+    >
+    <em *ngIf="serverElement.type === 'blueprint'"
+      >{{ serverElement.content }}</em
+    >
+  </p>
+</app-server-element>
+```
+
+server-element.component.html
+
+```html
+<div class="panel panel-default">
+  <div class="panel-heading">{{ element.name }}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
+  </div>
+</div>
+```
