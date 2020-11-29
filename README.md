@@ -825,3 +825,7 @@ cockpit.component.ts
 ### 70. Custom Property and Event Binding Summary
 
 Cách tiếp cận sử dụng @Input and @Output chỉ phù hợp trong trường hợp chỉ có 1 parent component và 1 child component giao tiếp với nhau. Trong một số trường hợp khác thì nó không phù hợp, chúng ta sẽ có một cách tiếp cận khác sẽ học trong bài sau.
+
+### 71. Understanding View Encapsulation
+
+Vẫn chưa hiểu lắm :v
