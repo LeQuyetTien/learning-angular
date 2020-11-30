@@ -1311,3 +1311,7 @@ Chúng ta có thể đặt Alias cho Input cùng tên với directive và cập 
 ```html
 <p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with basic directive!</p>
 ```
+
+### 99. What Happens behind the Scenes on Structural Directives
+
+Nếu chúng ta thay `*ngIf` thành `[ngIf]` thì nó vẫn hoạt động bình thường
