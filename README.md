@@ -1110,3 +1110,11 @@ Bài này sử dụng `@Output` để nội dung của `AppComponent` chỉ hi�
 ### 86. Passing Recipe Data with Property Binding
 
 Bài này sử dụng `@Input` để hiển thị mảng `recipes` từ `RecipeListComponent` sang `RecipeItemComponent`
+
+### 87. Passing Data with Event and Property Binding
+
+Bài này chúng ta sử dụng kết hợp `@Input` và `@Output` để hiển thị một `Recipe` vào `RecipeDetailComponent` khi `click` vào một `Recipe` từ `RecipeItemComponent`.
+
+Cách làm thì hơi lằng ngoằng tí, nhưng mà nó làm việc! Cụ thể, khi `click` vào một `Recipe` trong `RecipeItemComponent`, chúng ta sẽ `@Output` sang `RecipeListComponent`, rồi sau đó lại `@Output` sang `RecipeComponent`, tại đây ta có `data` của `Recipe` được chọn, rồi `@Input` vào `RecipeDetailComponent` để hiển thị ra.
+
+Trong bày này còn sử dụng `@ngIf` và `ng-template` để hiện thị message khi chưa có `Recipe` nào được chọn
