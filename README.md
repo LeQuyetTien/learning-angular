@@ -1138,7 +1138,7 @@ Trong 1 element không thể cùng sử dụng ngFor và ngIf
 
 ### 92. ngClass and ngStyle Recap
 
-### 93 Creating a Basic Attibute Directive
+### 93. Creating a Basic Attibute Directive
 
 Trong bài này chúng ta sẽ tạo một Directive đơn giản như sau:
 
@@ -1167,3 +1167,97 @@ app.component.html
 ```html
 <p appBasicHighlight>Style me with basic directive!</p>
 ```
+
+### 94. Using the Renderer to build a Better Attribute Directive
+
+Trong bài này chúng ta sẽ tạo `Directive` bằng `Renderer`.
+
+> Cách này hay hơn cách trước (ông Max nói :v)
+
+```cmd
+ng g d better-highlight/better-highlight
+```
+
+better-highlight.directive.ts
+
+```ts
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit {
+
+  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+
+  ngOnInit() {
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  }
+}
+```
+
+### 95. More about the Renderer
+
+In the last lecture, we used the Angular Renderer class to change the style of a HTML element. As explained in that lecture, you should use the Renderer for any DOM manipulations.
+
+Of course, you can do more than simply change the styling of an element via setStyle(). Learn more about the available Renderer methods [here](https://angular.io/api/core/Renderer2).
+
+### 96. Using HostListener to Listen to Host Events
+
+Trong bài này chúng ta sử dụng HostListener để thay đổi background của thẻ p khi di chuột vào hoặc ra khỏi nó
+
+```better-lighlight.directive.ts
+import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit {
+  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+
+  ngOnInit() {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  }
+
+  @HostListener('mouseenter') mouseover(eventData: Event) {
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  }
+
+  @HostListener('mouseleave') mouseleave(eventData: Event) {
+    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'transparent');
+  }
+}
+```
+
+### 97. Using HostBinding to Bind to Host Properties
+
+Trong bài này chúng ta sẽ sử dụng HostBinding thay cho Renderer
+
+```ts
+import { Directive, ElementRef, HostBinding, HostListener, OnInit, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit {
+  @HostBinding('style.backgroundColor') backgroundColor: string = 'transparent';
+
+  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+
+  ngOnInit() {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  }
+
+  @HostListener('mouseenter') mouseover(eventData: Event) {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+    this.backgroundColor = 'blue';
+  }
+
+  @HostListener('mouseleave') mouseleave(eventData: Event) {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'transparent');
+    this.backgroundColor = 'transparent';
+  }
+}
+```
+
+Đây là cách tốt nhất để làm việc với `Element` bên trong `Directive`
