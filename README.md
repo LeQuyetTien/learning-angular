@@ -1099,7 +1099,7 @@ server-element.component.ts
 
 ### 83. [OPTIONAL] Assignment Solution
 
-## Course Project - Components  Databinding
+## Course Project - Components Databinding
 
 ### 84. Introduction
 
@@ -1137,3 +1137,33 @@ Understanding Dierective
 Trong 1 element không thể cùng sử dụng ngFor và ngIf
 
 ### 92. ngClass and ngStyle Recap
+
+### 93 Creating a Basic Attibute Directive
+
+Trong bài này chúng ta sẽ tạo một Directive đơn giản như sau:
+
+app/basic-highlight/basic-highlight.directive.ts
+
+```ts
+import { Directive, ElementRef, OnInit } from '@angular/core';
+
+@Directive({
+  selector: '[appBasicHighlight]',
+})
+export class BasicHighlightDirective implements OnInit {
+  constructor(private elementRef: ElementRef) {}
+
+  ngOnInit() {
+    this.elementRef.nativeElement.style.backgroundColor = 'green';
+  }
+}
+```
+
+Để sử dụng được Directive thì chúng ta cần import nó vào phần `declarations` trong `app.module.ts`.
+
+Bây giờ chúng ta có thể sử dụng nó như sau:
+
+app.component.html
+```html
+<p appBasicHighlight>Style me with basic directive!</p>
+```
