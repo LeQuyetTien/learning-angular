@@ -759,7 +759,7 @@ Tiếp theo chúng ta sẽ định nghĩa 2 `Custom Event` trong CockpitComponen
 
 ```ts
 @Output() serverCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
-@Output()blueprintCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
+@Output() blueprintCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
 ```
 
 Sử dụng @Output để có thể sử dụng Custom Event từ bên ngoài
@@ -1098,3 +1098,15 @@ server-element.component.ts
 ### 82. Wrap Up
 
 ### 83. [OPTIONAL] Assignment Solution
+
+## Course Project - Components  Databinding
+
+### 84. Introduction
+
+### 85. Adding Navigation with Event Binding
+
+Bài này sử dụng `@Output` để nội dung của `AppComponent` chỉ hiển thị `Recipe` hoặc `Shopping List` khi chúng ta click từ `HeaderComponent`
+
+### 86. Passing Recipe Data with Property Binding
+
+Bài này sử dụng `@Input` để hiển thị mảng `recipes` từ `RecipeListComponent` sang `RecipeItemComponent`
