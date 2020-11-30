@@ -1261,3 +1261,53 @@ export class BetterHighlightDirective implements OnInit {
 ```
 
 Đây là cách tốt nhất để làm việc với `Element` bên trong `Directive`
+
+### 98. Binding to Directive Properties
+
+Trong bài này chúng ta sẽ chỉnh sửa Directive để nó có thể nhận giá trị động
+
+```ts
+import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit {
+  @Input() defaultColor: string = 'transparent';
+  @Input() highlightColor: string = 'blue';
+  @HostBinding('style.backgroundColor') backgroundColor: string;
+
+  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+
+  ngOnInit() {
+    this.backgroundColor = this.defaultColor;
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+  }
+
+  @HostListener('mouseenter') mouseover(eventData: Event) {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+    this.backgroundColor = this.highlightColor;
+  }
+
+  @HostListener('mouseleave') mouseleave(eventData: Event) {
+    // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'transparent');
+    this.backgroundColor = this.defaultColor;
+  }
+}
+```
+
+app.component.html
+
+```html
+<p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style me with basic directive!</p>
+```
+
+Chúng ta có thể đặt Alias cho Input cùng tên với directive và cập nhật lại như sau:
+
+```ts
+@Input('appBetterHighlight') highlightColor: string = 'blue';
+```
+
+```html
+<p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with basic directive!</p>
+```
