@@ -1394,3 +1394,41 @@ Chúng ta có thể sử dụng ngSwitch theo template sau:
   <div *ngSwitchDefault>output2</div>
 </div>
 ```
+
+## 08 Course Project - Directives
+
+### 102 Building and Using a Dropdown Directive
+
+Mục đích bài này là tạo ra `DropdownDirective` để hiển thị `dropdow` bằng cách thêm/xóa `class` tên là `open`
+
+`dropdown.directive.ts`
+
+```ts
+import { Directive, HostBinding, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appDropdown]',
+})
+export class DropdownDirective {
+  @HostBinding('class.open') isOpen = false;
+
+  @HostListener('click') toggleOpen() {
+    this.isOpen = !this.isOpen;
+  }
+}
+```
+
+recipe-details.component.html
+
+```html
+<div class="btn-group" appDropdown>
+  <button type="button" class="btn btn-primary dropdown-toggle">
+    Manage Recipe <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">To Shopping List</a></li>
+    <li><a href="#">Edit Recipe</a></li>
+    <li><a href="#">Delete Recipe</a></li>
+  </ul>
+</div>
+```
