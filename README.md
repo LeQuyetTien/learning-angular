@@ -1463,3 +1463,9 @@ export class DropdownDirective {
 
 ## 09 Using Services  Dependency Injection
 
+### 104 Module Introduction
+
+What are Services?
+
+Khi có nhiều Component có dùng chung một hoặc một số chức năng thì thay vì chúng ta tạo chúng cho mỗi Component thì chúng ta sẽ tạo ra một nơi tập trung để xử lý chúng gọi là Services
+
