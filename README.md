@@ -2,21 +2,21 @@
 
 [Angular - The Complete Guide (2020 Edition)](https://www.udemy.com/course/the-complete-guide-to-angular-2/).
 
-## Getting Started
+## 01 Getting Started
 
-### 1. Course Introduction
+### 001 Course Introduction
 
 Trong khóa học này chúng ta sẽ học cách để tạo một front end web application tuyệt vời bằng Angular
 
-### 2. What is Angular
+### 002 What is Angular
 
 Angular là một Javascript Framework cho phép bạn tạo Single Page Applications (SPAs).
 
-### 3. Join our Online Learning Community
+### 003 Join our Online Learning Community
 
 Tham gia cộng đồng [Academind Community](https://discord.gg/gxvEWGU) trên Discord
 
-### 4. Angular vs Angular 2 vs Angular 9
+### 004 Angular vs Angular 2 vs Angular 9
 
 Trải qua quá trình phát triển, hiện tại chúng ta có 2 phiên bản Angular:
 
@@ -25,11 +25,11 @@ Trải qua quá trình phát triển, hiện tại chúng ta có 2 phiên bản 
 
 Trong khóa học này, chúng ta sẽ học Angular
 
-### 5. CLI Deep Dive Troubleshooting
+### 005 CLI Deep Dive Troubleshooting
 
 [Angular CLI](https://cli.angular.io/) là một command line interface cho Angular giúp chúng ta tạo, phát triển, quản lý, chạy ứng dụng, ...
 
-### 6. Project Setup and First App
+### 006 Project Setup and First App
 
 Yêu cầu cài đặt [NodeJS](https://nodejs.org/en/)
 
@@ -47,11 +47,11 @@ cd my-dream-app
 ng serve
 ```
 
-### 7. Editing the First App
+### 007 Editing the First App
 
 [Visual Studio Code](https://code.visualstudio.com/): Đây là một IDE mạnh mẽ và được nhiều developer sử dụng.
 
-### 8. The Course Structure
+### 008 The Course Structure
 
 - Getting Started: tìm hiểu sơ qua về Angular. Cách cài đặt và tạo ứng dụng
 - The Basics: hiểu rõ hơn về Angular. Nó thực sự là cái gì? Cái gì xảy ra đằng sau nó? Cấu trúc thư mục, cách chúng kết nối với nhau
@@ -68,7 +68,7 @@ ng serve
 - Deployment: triển khai ứng dụng từ local lên internet
 - Animations & Testing: sử dụng animation và kiểm thử ứng dụng
 
-### 9. How to get the Most out of the Course
+### 009 How to get the Most out of the Course
 
 B1: Xem video để hiểu
 B2: Làm bài tập liên quan đến phần đó
@@ -76,13 +76,13 @@ B3: Làm tích hợp những gì vừa học được vào dự án
 B4: Hỏi nếu không hiểu vấn đề gì đó, nhưng nhớ phải search Google trước
 B5: Trả lời câu hỏi của những người trong cộng đồng Angular
 
-### 10. What is TypeScript
+### 010 What is TypeScript
 
 Typescript là một superset của Javascript, nó mở rộng các tính năng mới như Types, Class, Interfaces, ... theo hướng đối tượng.
 
 Khi chạy, Typescript sẽ được biên dịch sang Javascript
 
-### 11. A Basic Project Setup using Bootstrap for Styling
+### 011 A Basic Project Setup using Bootstrap for Styling
 
 Cài đặt boostrap cho dự án
 
@@ -99,17 +99,17 @@ Thêm bootstrap.min.css vào mục styles trong angular.json
 ],
 ```
 
-### 12. Where to find the Course Source Code
+### 012 Where to find the Course Source Code
 
 Trong mỗi thư mục sẽ có file zip của source code cho mỗi phần. Nhưng chúng ta sẽ tự code và không cần dùng đến chúng :)
 
-## The Basics
+## 02 The Basics
 
-### 13. Module Introduction
+### 013 Module Introduction
 
 Trong phần này chúng ta sẽ đi sâu vào Angular để biết nó thực sự là cái gì? Cái gì xảy ra đằng sau nó? Cách Angular bắt đầu
 
-### 14. How an Angular App gets Loaded and Started
+### 014 How an Angular App gets Loaded and Started
 
 Khi chúng ta chạy `ng serve`, Angular sẽ tạo ra một development server để host ứng dụng Angular ở địa chỉ http://localhost:4200/
 
@@ -132,11 +132,11 @@ export class AppComponent {
 
 Tại sao ứng dụng biết mà tải thẻ `<app-root>` từ file app.component.ts? Vì lúc ứng dụng khởi động, file `main.ts` cũng sẽ chạy, trong file này nó sẽ gọi `AppModule`, trong `AppModule` có khai báo AppComponent cho nên Angular biết `app-root` ở đâu để mà lấy.
 
-### 15. Components are Important
+### 015 Components are Important
 
 Components là một khai niệm quan trọng trong Angular, mỗi thành phần của ứng dụng sẽ là một Component. Ví dụ với 1 trang web cơ bản, chúng ta sẽ có 1 component cho header, 1 component cho main, 1 component cho sidebar, 1 component cho footer. Mỗi component sẽ chứa code HTML, CSS và cả logic. Việc phân tách này sẽ rất hữu ích trong việc mở rộng cũng như mainternance. Nếu bạn muốn sửa header, bạn chỉ cần sửa component header và nó không ảnh hưởng đến các thành phần khác.
 
-### 16. Creating a New Component
+### 016 Creating a New Component
 
 Bây giờ chúng sẽ tạo một component gọi là `server`. Đầu tiên là tạo một thư mục /src/app/server và thêm vào đó file server.component.ts
 
@@ -170,7 +170,7 @@ export class ServerComponent {}
 
 Cuối cùng thêm nội dung vào server.component.html
 
-### 17 Understanding the Role of AppModule and Component Declaration
+### 017 Understanding the Role of AppModule and Component Declaration
 
 Vì Angular không tự động quét các file và thư mục trong ứng dụng, cho nên sau khi thêm mới một component, chúng ta cần thêm class component vào AppModule để Angular có thể biết và sử dụng.
 
@@ -195,7 +195,7 @@ export class AppModule { }
 
 Chúng ta sẽ import ServerComponent từ đường dẫn './server/server.component' (không cần .ts, nó sẽ được thêm tự động bởi webpack) và thêm ServerComponent vào mục declarations.
 
-### 18. Using Custom Components
+### 018 Using Custom Components
 
 Sau khi thêm ServerComponent vào AppModule. Bây giờ chúng ta đã có thể sử dụng nó.
 
@@ -209,7 +209,7 @@ app.component.html
 
 Lưu lại và ta sẽ thấy nội dung trong serve.component.html xuất hiện trên trang http://localhost:4200/
 
-### 19. Creating Components with the CLI Nesting Components
+### 019 Creating Components with the CLI Nesting Components
 
 Thay vì tạo một component thủ công như trước, bây giờ chúng ta sẽ tạo mới một component bằng Angular CLI
 
@@ -227,7 +227,7 @@ servers.component.html
 <app-server></app-server> <app-server></app-server>
 ```
 
-### 20. Working with Component Templates
+### 020 Working with Component Templates
 
 Chúng ta có thể sử dụng thuộc tính template thay cho templateUrl để thêm trực tiếp code HTML vào fiel .ts như sau:
 
@@ -244,11 +244,11 @@ Chúng ta có thể sử dụng thuộc tính template thay cho templateUrl đ�
 
 Sử dụng dấu nháy `` để viết trên nhiều dòng
 
-### 21. Working with Component Styles
+### 021 Working with Component Styles
 
 Chúng ta có thể sử dụng styles thay cho styleUrls
 
-### 22. Fully Understanding the Component Selector
+### 022 Fully Understanding the Component Selector
 
 Chúng ta có thể sử dụng nhiều loại selector khác nhau:
 
@@ -268,13 +268,13 @@ Chúng ta có thể sử dụng nhiều loại selector khác nhau:
 >
 > selector1, selector2: Select if either selector1 or selector2 matches.
 
-### 23. [OPTIONAL] Assignment Solution
+### 023 [OPTIONAL] Assignment Solution
 
 Sau khi tạo Component bằng tay. Nhớ thêm vào AppModule
 
 Chỉ có thế thôi mà cũng tạo một bài riêng. Ông này cũng rãnh ghê :))
 
-### 24. What is Databinding
+### 024 What is Databinding
 
 Bây giờ chúng ta sẽ tìm hiểu Databinding. Vậy Databinding cái gì?
 
@@ -291,7 +291,7 @@ TS nhận lại phản hồi từ HTML:
 
 Gộp 2 cái lại chúng ta có: **Two-way-binding** ([(ngModel)]="data")
 
-### 25. String Interpolation
+### 025 String Interpolation
 
 Để sử dụng string interpolation, chúng ta sẽ khai báo biến trong file TS sau đó xử dụng ở file HTML như sau:
 
@@ -333,7 +333,7 @@ server.component.html
 <p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
 ```
 
-### 26. Property Binding
+### 026 Property Binding
 
 Để ví dụ cho trường hợp Property Binding, chúng ta sẽ thêm một giá trị là allowNewServer vào file TS và sử dụng với property như sau:
 
@@ -353,11 +353,11 @@ export class ServersComponent implements OnInit {
 <button class="btn btn-primary" [disabled]="allowNewServer">Add Server</button>
 ```
 
-### 27. Property Binding vs String Interpolation
+### 027 Property Binding vs String Interpolation
 
 Thêm [] cho property để chỉ ra rằng nó là một property động và có thể viết TS code vào trong đó. Có thể là lấy giá trị từ TS hoặc một biểu thức
 
-### 28. Event Binding
+### 028 Event Binding
 
 servers.component.ts
 
@@ -384,7 +384,7 @@ servers.component.html
 
 > Đặt tên event trong ()
 
-### 29. Bindable Properties and Events
+### 029 Bindable Properties and Events
 
 How do you know to which Properties or Events of HTML Elements you may bind? You can basically bind to all Properties and Events - a good idea is to `console.log()` the element you're interested in to see which properties and events it offers.
 
@@ -392,7 +392,7 @@ Important: For events, you don't bind to onclick but only to click (=> (click)).
 
 The MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. Googling for `YOUR_ELEMENT properties` or `YOUR_ELEMENT events` should yield nice results.
 
-### 30. Passing and Using Data with Event Binding
+### 030 Passing and Using Data with Event Binding
 
 servers.component.ts
 
@@ -414,7 +414,7 @@ servers.component.html
 
 > Sử dụng **$event** để truyền event data
 
-### 31. Important FormsModule is Required for Two-Way-Binding
+### 031 Important FormsModule is Required for Two-Way-Binding
 
 Important: For Two-Way-Binding (covered in the next lecture) to work, you need to enable the ngModel directive. This is done by adding the FormsModule to the imports[] array in the AppModule.
 
@@ -422,7 +422,7 @@ You then also need to add the import from @angular/forms in the app.module.ts fi
 
 import { FormsModule } from '@angular/forms';
 
-### 32. Two-Way-Databinding
+### 032 Two-Way-Databinding
 
 Sử dụng **[(ngModel)]** như sau:
 
@@ -434,7 +434,7 @@ Sử dụng **[(ngModel)]** như sau:
 
 Thẻ input với ngModel có thể vừa nhận giá trị từ TS, vừa có thể truyền dữ liệu sang TS. Còn với Event Binding thì chỉ có thể truyền dữ liệu sang TS.
 
-### 33. Combining all Forms of Databinding
+### 033 Combining all Forms of Databinding
 
 Chỉnh sửa lại Demo app.
 
@@ -444,7 +444,7 @@ onCreateServer(): void {
 }
 ```
 
-### 34. [OPTIONAL] Assignment Solution
+### 034 [OPTIONAL] Assignment Solution
 
 Chúng ta có thể sử dụng biểu thức cho property cũng như event binding như sau:
 
@@ -458,7 +458,7 @@ Chúng ta có thể sử dụng biểu thức cho property cũng như event bind
 </button>
 ```
 
-### 35. Understanding Directives
+### 035 Understanding Directives
 
 Directives are Instructions in the DOM
 
@@ -466,7 +466,7 @@ Directives cũng tương tự như Component nhưng nó thường được sử 
 
 ngIf, ngFor, ... là các directives
 
-###. 36. Using ngIf to Output Data Conditionally
+### 036 Using ngIf to Output Data Conditionally
 
 ```html
 <p *ngIf="serverCreated">Server was created! Name is {{ serverName }}</p>
@@ -474,7 +474,7 @@ ngIf, ngFor, ... là các directives
 
 Nếu `serverCreated==true` thì chúng ta sẽ thấy thẻ p. Ngược lại, nếu `serverCreated==false`, thẻ p sẽ không được tạo.
 
-### 37. Enhancing ngIf with an Else Condition
+### 037 Enhancing ngIf with an Else Condition
 
 Sử dụng ngIf else với ng-template như sau:
 
@@ -487,7 +487,7 @@ Sử dụng ngIf else với ng-template như sau:
 </ng-template>
 ```
 
-### 38. Styling Elements Dynamically with ngStyle
+### 038 Styling Elements Dynamically with ngStyle
 
 ```html
 <p [ngStyle]="{backgroundColor: getColor()}">...</p>
@@ -499,7 +499,7 @@ hoặc
 <p [ngStyle]="{'background-color': 'blue'}">...</p>
 ```
 
-### 39. Applying CSS Classes Dynamically with ngClass
+### 039 Applying CSS Classes Dynamically with ngClass
 
 Sử dụng **ngClass** để thêm hoặc xóa class trong DOM như sau:
 
@@ -507,7 +507,7 @@ Sử dụng **ngClass** để thêm hoặc xóa class trong DOM như sau:
 <p [ngClass]="{online: serverStatus === 'online'}">...</p>
 ```
 
-### 40. Outputting Lists with ngFor
+### 040 Outputting Lists with ngFor
 
 Sử dụng ngFor để tạo danh sách như sau:
 
@@ -517,25 +517,27 @@ Sử dụng ngFor để tạo danh sách như sau:
 
 Khai báo biết server duyệt qua từng phần tử trong servers
 
-### 41. [OPTIONAL] Assignment Solution
+### 041 [OPTIONAL] Assignment Solution
 
 Sử dụng ngIf để ẩn/hiện password
 
-### 42. Getting the Index when using ngFor
+### 042 Getting the Index when using ngFor
 
 ```html
 <div *ngFor="let server of servers; let i = index"></div>
 ```
 
-## Course Project - The Basics
+## 03 Course Project - The Basics
 
 Trong phần này chúng ta sẽ tạo một project shopping list để thực hành những cái đã học được.
 
-### 44. Planning the App
+### 043 Project Introduction
+
+### 044 Planning the App
 
 ![Planling the App](https://i.ibb.co/tsnwr3b/vlcsnap-2020-11-26-07h32m56s412.png)
 
-### 45. Installing Bootstrap Correctly
+### 045 Installing Bootstrap Correctly
 
 In the next lecture, we set up the course project. For that, we'll install the Bootstrap CSS Framework.
 
@@ -545,11 +547,11 @@ Additionally, when using a project created with Angular CLI 6+ (check via `ng -v
 
 Also see this lecture - I do show the complete setup process there: https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655614/
 
-### 46. Setting up the Application
+### 046 Setting up the Application
 
 Khôi phục lại dự án để bắt đầu dự án mới. Thay vì phải tạo mới dự án và cài đặt Bootstrap lại.
 
-### 47. Creating the Components
+### 047 Creating the Components
 
 Tạo HeaderComponent bằng tay.
 Tạo RecipesComponent bằng CLI:
@@ -576,13 +578,13 @@ recipe/recipe-detail/recipe-item
 shopping-list
 shopping-list/shopping-edit
 
-### 48. Using the Components
+### 048 Using the Components
 
-### 49. Adding a Navigation Bar
+### 049 Adding a Navigation Bar
 
-### 50. Alternative Non-Collapsable Navigation Bar
+### 050 Alternative Non-Collapsable Navigation Bar
 
-### 51. Creating a Recipe Model
+### 051 Creating a Recipe Model
 
 Chúng ta sẽ tạo một `Recipe` Model là một `class` trong `OOP` với các thuộc tính và gán giá trị trong hàm `constructor`
 
@@ -600,9 +602,9 @@ export class Recipe {
 }
 ```
 
-### 52. Adding Content to the Recipes Components
+### 052 Adding Content to the Recipes Components
 
-### 53. Outputting a List of Recipes with ngFor
+### 053 Outputting a List of Recipes with ngFor
 
 ```html
 <div class="row">
@@ -626,11 +628,11 @@ export class Recipe {
 </div>
 ```
 
-### 54. Displaying Recipe Details
+### 054 Displaying Recipe Details
 
-### 55. Working on the ShoppingListComponent
+### 055 Working on the ShoppingListComponent
 
-### 56. Creating an Ingredient Model
+### 056 Creating an Ingredient Model
 
 ```ts
 export class Ingredient {
@@ -652,43 +654,43 @@ export class Ingredient {
 }
 ```
 
-### 57. Creating and Outputting the Shopping List
+### 057 Creating and Outputting the Shopping List
 
-### 58. Adding a Shopping List Edit Section
+### 058 Adding a Shopping List Edit Section
 
-### 59. Wrap Up Next Steps
+### 059 Wrap Up Next Steps
 
-## Debugging
+## 04 Debugging
 
-### 60. Understanding Angular Error Messages
+### 060 Understanding Angular Error Messages
 
 Khi gặp lỗi thì nhớ mở `Console` trong `Debug Mode` của trình duyệt để kiểm tra. (`F12` in `Chrome` on `Windows`)
 
 > Lỗi xuất hiện màu đỏ và lý do thường nằm ở dòng đầu tiên của thông báo lỗi
 
-### 61. Debugging Code in the Browser Using Sourcemaps
+### 061 Debugging Code in the Browser Using Sourcemaps
 
 Lưu ý: `Typescript` không chạy trực tiếp trong trình duyệt, khi chạy, code `Typescript` sẽ được biên dịch sang `Javascript`. Vì `Javascript` hỗ trợ `source map`, nên khi click và code `Javascript` trong thẻ `Sources` của `Debug Mode` thì nó sẽ link tới đoạn code tương ứng trong file `Typescript`
 
 > Chúng ta có thể vào số dòng của file `Javascript` trong `Sources` để chạy `debug`
 
-### 62. Using Augury to Dive into Angular Apps
+### 062 Using Augury to Dive into Angular Apps
 
 Augury là một `extension` trong `Chrome` dùng để debug app
 
-## Components Databinding Deep Dive
+## 05 Components Databinding Deep Dive
 
-### 63. Module Introduction
+### 063 Module Introduction
 
-Understranding Components & Databinding
+Understanding Components & Databinding
 
-### 64. Splitting Apps into Components
+### 064 Splitting Apps into Components
 
 Tách code từ AppComponent to CockpitComponent và ServerElementComponent
 
-### 65. Property Event Binding Overview
+### 065 Property Event Binding Overview
 
-### 66. Binding to Custom Properties
+### 066 Binding to Custom Properties
 
 Trong bài này chúng ta học được cách sử dụng Input
 
@@ -721,7 +723,7 @@ Trong app.component.html chúng ta sẽ thêm vào thuộc tính element cho th�
 ></app-server-element>
 ```
 
-### 67. Asigning an Alias to Custom Properties
+### 067 Asigning an Alias to Custom Properties
 
 Thay vì sử dụng tên biến `element` từ `ServerElementComponent` như là tên của thuộc tính trong thẻ `app-server-element`. Chúng ta có thể sử dụng Alias để thay đổi tên của thuộc tính như sau:
 
@@ -736,7 +738,7 @@ Trong app.component.html, thuộc tính element bây giờ sẽ được đổi 
 ></app-server-element>
 ```
 
-### 68. Binding to Custom Events
+### 068 Binding to Custom Events
 
 Bài trước chúng ta đã học cách sử dụng `Input`, bài này chúng ta sẽ học về `Output`
 
@@ -803,7 +805,7 @@ onAddServer() {
 
 Chúng ta Sử dụng `this.serverCreated.emit()` và `this.blueprintCreated.emit()` để truyền data sang AppComponent
 
-### 69. Asigning an Alias to Custom Events
+### 069 Asigning an Alias to Custom Events
 
 Tương tự hàm `Input`, với hàm `Output` chúng ta cũng có thể sử dụng Alias như sau:
 
@@ -822,11 +824,11 @@ cockpit.component.ts
 @Output('bpCreated')blueprintCreated = new EventEmitter<{ serverName: string; serverContent: string; }>();
 ```
 
-### 70. Custom Property and Event Binding Summary
+### 070 Custom Property and Event Binding Summary
 
 Cách tiếp cận sử dụng @Input and @Output chỉ phù hợp trong trường hợp chỉ có 1 parent component và 1 child component giao tiếp với nhau. Trong một số trường hợp khác thì nó không phù hợp, chúng ta sẽ có một cách tiếp cận khác sẽ học trong bài sau.
 
-### 71. Understanding View Encapsulation
+### 071 Understanding View Encapsulation
 
 Khi chạy thử ứng dụng, chúng ta thấy rằng khi tạo Server Blueprint thì giá trị của nó không được chuyển sang màu xanh. Mặc dù Trong app.component.css chúng ta đã định nghĩa `p { color: blue; }`.
 
@@ -840,7 +842,7 @@ p {
 }
 ```
 
-### 72. More on View Encapsulation
+### 072 More on View Encapsulation
 
 Bình thường file `CSS` bên trong một component chỉ được áp dụng cho component đó.
 
@@ -865,7 +867,7 @@ label {
 
 Sau khi chúng ta thêm style trên vào thì tất cả thẻ label trong ứng dụng đều chuyển sang màu đỏ
 
-### 73. Using Local References in Templates
+### 073 Using Local References in Templates
 
 Thay vì sử dụng ngModel cho biến newSererName, chúng ta có thể sử dụng Local References như sau:
 
@@ -907,7 +909,7 @@ onAddBlueprint(nameInput: HTMLInputElement) {
 }
 ```
 
-### 74. ViewChild() in Angular 8
+### 074 ViewChild() in Angular 8
 
 Trong Angular 8+, cú pháp `@ViewChild()` bị thay đổi như sau:
 
@@ -927,7 +929,7 @@ Sử dụng `{ static: true }` nếu bạn cần truy cập trong ngOnInit(). N�
 
 Nếu bạn sử dụng Angular 9, bạn chỉ cần thêm { static: true } (if needed) chứ không cần thêm { static: false }.
 
-### 75. Getting Access to the Template DOM with ViewChild
+### 075 Getting Access to the Template DOM with ViewChild
 
 Trong bài này chúng ta sẽ học về `@ViewChild`
 
@@ -964,7 +966,7 @@ onAddBlueprint(nameInput: HTMLInputElement) {
 }
 ```
 
-### 76. Projecting Content into Components with ng-content
+### 076 Projecting Content into Components with ng-content
 
 Mặc định, nội dung bên trong thẻ đóng và thẻ mở của một component sẽ không được áp dụng, Angular không quan tâm đến chúng. Nhưng chúng ta có thể thay đổi nó bằng cách sử dụng `<ng-content></ng-content>` trong template của component như sau:
 
@@ -997,7 +999,7 @@ server-element.component.html
 </div>
 ```
 
-### 77. Understanding the Component Lifecycle
+### 077 Understanding the Component Lifecycle
 
 Khi chúng ta tạo component bằng CLI, chúng ta sẽ thấy hàm `ngOnInit` bên trong file TS của component. Vậy nó dùng để làm gì?
 
@@ -1009,7 +1011,7 @@ Khi chúng ta tạo component bằng CLI, chúng ta sẽ thấy hàm `ngOnInit` 
 - ngAfterViewInit: được gọi khi tất cả thành phần đã được render
 - ngAfterViewChecked: được gọi khi có sự thay đổi sau khi tất cả thành phần đã được render
 
-### 78. Seeing Lifecycle Hooks in Action
+### 078 Seeing Lifecycle Hooks in Action
 
 Để sử dụng ngOnChanges, chúng ta cần import từ @angular/core và thêm vào implements của Component class như sau:
 
@@ -1044,7 +1046,7 @@ Khi chúng ta tạo mới một giá trị thì cả `constructor`, `ngOnInit` v
 
 `ngOnDestroy` được gọi khi một component bị destroy
 
-### 79. Lifecycle Hooks and Template Access
+### 079 Lifecycle Hooks and Template Access
 
 Bây giờ chúng ta thử tạo một ViewChild và console.log nó ra bên trong `ngOnInit` và `ngAfterViewInit` như sau:
 
@@ -1064,9 +1066,9 @@ ngAfterViewInit() {
 
 Kết quả console.log trong `ngOnInit` sẽ bị lỗi vì `this.header.nativeElement` is undefined, còn trong ngAfterViewInit sẽ có giá trị.
 
-### 80. ContentChild() in Angular 8
+### 080 ContentChild() in Angular 8
 
-### 81. Getting Access to ng-content With ContentChild
+### 081 Getting Access to ng-content With ContentChild
 
 Trong bài này chúng ta sẽ học cách sử dụng `@ContentChild` để lấy giá trị của một `Local Reference` là `#contentParagraph` từ `ng-content` trong `app.component.html`
 
@@ -1095,23 +1097,23 @@ server-element.component.ts
 @ContentChild('contentParagraph') paragraph: ElementRef;
 ```
 
-### 82. Wrap Up
+### 082 Wrap Up
 
-### 83. [OPTIONAL] Assignment Solution
+### 083 [OPTIONAL] Assignment Solution
 
-## Course Project - Components Databinding
+## 06 Course Project - Components Databinding
 
-### 84. Introduction
+### 084 Introduction
 
-### 85. Adding Navigation with Event Binding
+### 085 Adding Navigation with Event Binding
 
 Bài này sử dụng `@Output` để nội dung của `AppComponent` chỉ hiển thị `Recipe` hoặc `Shopping List` khi chúng ta click từ `HeaderComponent`
 
-### 86. Passing Recipe Data with Property Binding
+### 086 Passing Recipe Data with Property Binding
 
 Bài này sử dụng `@Input` để hiển thị mảng `recipes` từ `RecipeListComponent` sang `RecipeItemComponent`
 
-### 87. Passing Data with Event and Property Binding
+### 087 Passing Data with Event and Property Binding
 
 Bài này chúng ta sử dụng kết hợp `@Input` và `@Output` để hiển thị một `Recipe` vào `RecipeDetailComponent` khi `click` vào một `Recipe` từ `RecipeItemComponent`.
 
@@ -1119,26 +1121,30 @@ Cách làm thì hơi lằng ngoằng tí, nhưng mà nó làm việc! Cụ thể
 
 Trong bày này còn sử dụng `@ngIf` và `ng-template` để hiện thị message khi chưa có `Recipe` nào được chọn
 
-### 89. Allowing the User to Add Ingredients to the Shopping List
+### 088 Make sure you have FormsModule added
+
+Nếu sử dụng form thì phải thêm FormsModule vào AppModule
+
+### 089 Allowing the User to Add Ingredients to the Shopping List
 
 Bài này chúng ta sử dụng `@Output` `EventEmitter` để thêm `Igradient` từ `ShoppingEditComponent` và hiển thị ra `ShoppingListComponent`
 
-### Directives Deep Dive
+## 07 Directives Deep Dive
 
-### 90. Module Introduction
+### 090 Module Introduction
 
 Understanding Dierective
 
-- Atribute Directives
+- Attribute Directives
 - Structural Directives
 
-### 91. ngFor and ngIf Recap
+### 091 ngFor and ngIf Recap
 
 Trong 1 element không thể cùng sử dụng ngFor và ngIf
 
-### 92. ngClass and ngStyle Recap
+### 092 ngClass and ngStyle Recap
 
-### 93. Creating a Basic Attibute Directive
+### 093 Creating a Basic Attibute Directive
 
 Trong bài này chúng ta sẽ tạo một Directive đơn giản như sau:
 
@@ -1169,7 +1175,7 @@ app.component.html
 <p appBasicHighlight>Style me with basic directive!</p>
 ```
 
-### 94. Using the Renderer to build a Better Attribute Directive
+### 094 Using the Renderer to build a Better Attribute Directive
 
 Trong bài này chúng ta sẽ tạo `Directive` bằng `Renderer`.
 
@@ -1200,13 +1206,13 @@ export class BetterHighlightDirective implements OnInit {
 }
 ```
 
-### 95. More about the Renderer
+### 095 More about the Renderer
 
 In the last lecture, we used the Angular Renderer class to change the style of a HTML element. As explained in that lecture, you should use the Renderer for any DOM manipulations.
 
 Of course, you can do more than simply change the styling of an element via setStyle(). Learn more about the available Renderer methods [here](https://angular.io/api/core/Renderer2).
 
-### 96. Using HostListener to Listen to Host Events
+### 096 Using HostListener to Listen to Host Events
 
 Trong bài này chúng ta sử dụng HostListener để thay đổi background của thẻ p khi di chuột vào hoặc ra khỏi nó
 
@@ -1233,7 +1239,7 @@ export class BetterHighlightDirective implements OnInit {
 }
 ```
 
-### 97. Using HostBinding to Bind to Host Properties
+### 097 Using HostBinding to Bind to Host Properties
 
 Trong bài này chúng ta sẽ sử dụng HostBinding thay cho Renderer
 
@@ -1273,7 +1279,7 @@ export class BetterHighlightDirective implements OnInit {
 
 Đây là cách tốt nhất để làm việc với `Element` bên trong `Directive`
 
-### 98. Binding to Directive Properties
+### 098 Binding to Directive Properties
 
 Trong bài này chúng ta sẽ chỉnh sửa Directive để nó có thể nhận giá trị động
 
@@ -1335,11 +1341,11 @@ Chúng ta có thể đặt Alias cho Input cùng tên với directive và cập 
 </p>
 ```
 
-### 99. What Happens behind the Scenes on Structural Directives
+### 099 What Happens behind the Scenes on Structural Directives
 
 Nếu chúng ta thay `*ngIf` thành `[ngIf]` thì nó vẫn hoạt động bình thường
 
-### 100. Building a Structural Directive
+### 100 Building a Structural Directive
 
 Chúng ta có thể tạo ra một `Structural Directive` tương tự như `ngIf` và `ngFor` như sau:
 
@@ -1375,5 +1381,16 @@ export class UnlessDirective {
   >
     {{ even }}
   </li>
+</div>
+```
+
+### 101 Understanding ngSwitch
+
+Chúng ta có thể sử dụng ngSwitch theo template sau:
+
+```html
+<div [ngSwitch]="conditionExpression">
+  <div *ngSwitchCase="expression">output</div>
+  <div *ngSwitchDefault>output2</div>
 </div>
 ```
