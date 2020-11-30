@@ -1135,3 +1135,5 @@ Understanding Dierective
 ### 91. ngFor and ngIf Recap
 
 Trong 1 element không thể cùng sử dụng ngFor và ngIf
+
+### 92. ngClass and ngStyle Recap
