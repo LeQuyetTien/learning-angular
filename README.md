@@ -1131,3 +1131,7 @@ Understanding Dierective
 
 - Atribute Directives
 - Structural Directives
+
+### 91. ngFor and ngIf Recap
+
+Trong 1 element không thể cùng sử dụng ngFor và ngIf
