@@ -1122,3 +1122,12 @@ Trong bày này còn sử dụng `@ngIf` và `ng-template` để hiện thị me
 ### 89. Allowing the User to Add Ingredients to the Shopping List
 
 Bài này chúng ta sử dụng `@Output` `EventEmitter` để thêm `Igradient` từ `ShoppingEditComponent` và hiển thị ra `ShoppingListComponent`
+
+### Directives Deep Dive
+
+### 90. Module Introduction
+
+Understanding Dierective
+
+- Atribute Directives
+- Structural Directives
