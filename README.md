@@ -1164,6 +1164,7 @@ export class BasicHighlightDirective implements OnInit {
 Bây giờ chúng ta có thể sử dụng nó như sau:
 
 app.component.html
+
 ```html
 <p appBasicHighlight>Style me with basic directive!</p>
 ```
@@ -1184,14 +1185,17 @@ better-highlight.directive.ts
 import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appBetterHighlight]'
+  selector: '[appBetterHighlight]',
 })
 export class BetterHighlightDirective implements OnInit {
-
-  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
-    this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+    this.renderer.setStyle(
+      this.elRef.nativeElement,
+      'background-color',
+      'blue'
+    );
   }
 }
 ```
@@ -1234,15 +1238,22 @@ export class BetterHighlightDirective implements OnInit {
 Trong bài này chúng ta sẽ sử dụng HostBinding thay cho Renderer
 
 ```ts
-import { Directive, ElementRef, HostBinding, HostListener, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 
 @Directive({
-  selector: '[appBetterHighlight]'
+  selector: '[appBetterHighlight]',
 })
 export class BetterHighlightDirective implements OnInit {
   @HostBinding('style.backgroundColor') backgroundColor: string = 'transparent';
 
-  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     // this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
@@ -1267,17 +1278,25 @@ export class BetterHighlightDirective implements OnInit {
 Trong bài này chúng ta sẽ chỉnh sửa Directive để nó có thể nhận giá trị động
 
 ```ts
-import { Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 
 @Directive({
-  selector: '[appBetterHighlight]'
+  selector: '[appBetterHighlight]',
 })
 export class BetterHighlightDirective implements OnInit {
   @Input() defaultColor: string = 'transparent';
   @Input() highlightColor: string = 'blue';
   @HostBinding('style.backgroundColor') backgroundColor: string;
 
-  constructor(private elRef: ElementRef , private renderer: Renderer2) { }
+  constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.backgroundColor = this.defaultColor;
@@ -1299,7 +1318,9 @@ export class BetterHighlightDirective implements OnInit {
 app.component.html
 
 ```html
-<p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style me with basic directive!</p>
+<p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">
+  Style me with basic directive!
+</p>
 ```
 
 Chúng ta có thể đặt Alias cho Input cùng tên với directive và cập nhật lại như sau:
@@ -1309,9 +1330,50 @@ Chúng ta có thể đặt Alias cho Input cùng tên với directive và cập 
 ```
 
 ```html
-<p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with basic directive!</p>
+<p [appBetterHighlight]="'red'" defaultColor="yellow">
+  Style me with basic directive!
+</p>
 ```
 
 ### 99. What Happens behind the Scenes on Structural Directives
 
 Nếu chúng ta thay `*ngIf` thành `[ngIf]` thì nó vẫn hoạt động bình thường
+
+### 100. Building a Structural Directive
+
+Chúng ta có thể tạo ra một `Structural Directive` tương tự như `ngIf` và `ngFor` như sau:
+
+```ts
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[appUnless]',
+})
+export class UnlessDirective {
+  @Input() set appUnless(condition: boolean) {
+    if (!condition) {
+      this.vcRef.createEmbeddedView(this.templateRef);
+    } else {
+      this.vcRef.clear();
+    }
+  }
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private vcRef: ViewContainerRef
+  ) {}
+}
+```
+
+```html
+<div *appUnless="onlyOdd">
+  <li
+    class="list-group-item"
+    *ngFor="let even of evenNumbers"
+    [ngClass]="{odd: even % 2 !== 0}"
+    [ngStyle]="{backgroundColor: even % 2 != 0 ? 'yellow' : 'transparent'}"
+  >
+    {{ even }}
+  </li>
+</div>
+```
