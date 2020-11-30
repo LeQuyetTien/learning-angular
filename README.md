@@ -1469,3 +1469,6 @@ What are Services?
 
 Khi có nhiều Component có dùng chung một hoặc một số chức năng thì thay vì chúng ta tạo chúng cho mỗi Component thì chúng ta sẽ tạo ra một nơi tập trung để xử lý chúng gọi là Services
 
+### 105 Why would you Need Services
+
+Thay vì truyền data lòng vòng giữa các Component như cách sử dụng Property và Event Binding thì chúng ta sẽ sử dụng Services để đơn giản hơn các thao tác
