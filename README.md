@@ -1860,3 +1860,7 @@ Trong bài này chúng ta thực hiện hành động `Manage Recipe` > `To Shop
 ### 123 Module Introduction
 
 Trong phần này chúng ta sẽ học về Routing
+
+### 124 Why do we need a Router
+
+Chúng ta sử dụng `Router` để `Module` hóa ứng dụng, chỉ load những trang cần thiết chứ không phải load tất cả vào `AppComponent`
