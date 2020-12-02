@@ -1472,3 +1472,35 @@ Khi có nhiều Component có dùng chung một hoặc một số chức năng t
 ### 105 Why would you Need Services
 
 Thay vì truyền data lòng vòng giữa các Component như cách sử dụng Property và Event Binding thì chúng ta sẽ sử dụng Services để đơn giản hơn các thao tác
+
+### 106 Creating a Logging Service
+
+Chúng ta sẽ tạo một service cơ bản như sau:
+
+logging.service.ts
+
+```ts
+export class LoggingService {
+  logStatusChange(status: string) {
+    console.log('A server status changed, new status: ' + status);
+  }
+}
+```
+
+Chúng ta sử dụng service này như sau:
+
+new-account.component.ts
+
+```ts
+import { LoggingService } from '../logging.service';
+
+export class NewAccountComponent {
+  onCreateAccount(accountName: string, accountStatus: string) {
+    const service = new LoggingService();
+    service.logStatusChange(accountStatus);
+    // console.log('A server status changed, new status: ' + accountStatus);
+  }
+}
+```
+
+Chỉ cần import, tạo mới class service và gọi hàm. Tuy nhiên đây không phải là cách làm đúng trong Angular. Chúng ta sẽ học trong bài sau
