@@ -1853,3 +1853,10 @@ private recipes: Recipe[] = [
 ### 122 Passing Ingredients from Recipes to the Shopping List
 
 Trong bài này chúng ta thực hiện hành động `Manage Recipe` > `To Shopping List` để thêm danh sách `Ingredients` của một `Recipe` vào `Shopping List`
+
+
+## 11 Changing Pages with Routing
+
+### 123 Module Introduction
+
+Trong phần này chúng ta sẽ học về Routing
