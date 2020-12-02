@@ -1504,3 +1504,35 @@ export class NewAccountComponent {
 ```
 
 Chỉ cần import, tạo mới class service và gọi hàm. Tuy nhiên đây không phải là cách làm đúng trong Angular. Chúng ta sẽ học trong bài sau
+
+### 107 Injecting the Logging Service into Components
+
+Để sử dụng Service trong Angular ta làm như sau:
+
+1. Importing service
+
+```ts
+import { LoggingService } from '../logging.service';
+```
+2. Adding to providers
+
+```ts
+@Component({
+  ...
+  providers: [LoggingService]
+})
+```
+
+3. Adding to constructor
+
+```ts
+constructor(private loggingService: LoggingService) {}
+```
+
+4. Calling in function
+
+```ts
+onCreateAccount(accountName: string, accountStatus: string) {
+  this.loggingService.logStatusChange(accountStatus);
+}
+```
