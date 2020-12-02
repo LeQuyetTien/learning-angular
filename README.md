@@ -1686,3 +1686,9 @@ export class AppModule { ... }
 Cái này là lazy loading, services sẽ không import ngay từ đầu, mà chỉ được sử dụng khi cần.
 
 ### 114 [OPTIONAL] Assignment Solution
+
+## 10 Course Project - Services  Dependency Injection
+
+### 115 Introduction
+
+Trong phần này chúng ta sẽ sử dụng Services vào dự án
