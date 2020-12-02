@@ -1785,3 +1785,9 @@ export class ShoppingListService {
   }
 }
 ```
+
+### 120 Using Services for Pushing Data from A to B
+
+Khi chạy thử, chúng ta thấy khi thêm một Ingredient, ứng dụng không hiển thị lỗi nhưng new ingredient cũng không hiển thị trong danh sách. Lý do là bởi vì chúng ta chỉ lấy một bản copy từ ShoppingListService. Để sửa lỗi này chúng ta chỉ đơn giản là đổi `return this.ingredients.slice();` thành `return this.ingredients;` là được.
+
+Tuy nhiên trong bày này chúng ta sử dụng một cách khác đó là dùng EventEmitter để emit và subscribe khi có thay đổi.
