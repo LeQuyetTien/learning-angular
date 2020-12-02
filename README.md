@@ -1536,3 +1536,40 @@ onCreateAccount(accountName: string, accountStatus: string) {
   this.loggingService.logStatusChange(accountStatus);
 }
 ```
+
+### 108 Creating a Data Service
+
+Chúng ta tạo service như sau:
+
+accounts.service.ts
+
+```ts
+export class AccountsService {
+  accounts = [
+    {
+      name: 'Master Account',
+      status: 'active',
+    },
+    {
+      name: 'Testaccount',
+      status: 'inactive',
+    },
+    {
+      name: 'Hidden Account',
+      status: 'unknown',
+    },
+  ];
+
+  addAccount(name: string, status: string) {
+    this.accounts.push({ name: name, status: status });
+  }
+
+  updateStatus(id: number, status: string) {
+    this.accounts[id].status = status;
+  }
+}
+```
+
+Trong AccoutsService chúng ta có 1 mảng accounts và 2 hàm là addAccount và updateStatus. Bây giờ chúng ta có thể thay thế Output và EventEmitter bằng AccountsService.
+
+Sau khi cập nhật, ứng dụng vẫn chạy bình thường nhưng khi chúng ta add/update account thì thông tin không được cập nhật. Chúng ta sẽ xử lý trong bài sau.
