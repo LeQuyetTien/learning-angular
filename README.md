@@ -1692,3 +1692,10 @@ Cái này là lazy loading, services sẽ không import ngay từ đầu, mà ch
 ### 115 Introduction
 
 Trong phần này chúng ta sẽ sử dụng Services vào dự án
+
+### 116 Setting up the Services
+
+Chúng ta sẽ tạo 2 services sau:
+
+1. recipes/recipe.service.ts
+2. shopping-list/shopping-list.service.ts
