@@ -1760,3 +1760,28 @@ ngOnInit(): void {
   );
 }
 ```
+
+### 119 Adding the Shopping List Service
+
+Chúng ta tạo `ShoppingListService` như sau:
+
+`shopping-list.service.ts`
+
+```ts
+import { Ingredient } from '../shared/ingredient.model';
+
+export class ShoppingListService {
+  private ingredients: Ingredient[] = [
+    new Ingredient('Apples', 5),
+    new Ingredient('Tomatoes', 10),
+  ];
+
+  getIngredients() {
+    return this.ingredients.slice();
+  }
+
+  addIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
+}
+```
