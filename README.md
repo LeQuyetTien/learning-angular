@@ -1864,3 +1864,21 @@ Trong phần này chúng ta sẽ học về Routing
 ### 124 Why do we need a Router
 
 Chúng ta sử dụng `Router` để `Module` hóa ứng dụng, chỉ load những trang cần thiết chứ không phải load tất cả vào `AppComponent`
+
+### 125 Understanding the Example Project
+
+Trong ứng dụng, chúng ta có 3 phần chính:
+
+1. Home
+
+2. Servers
+
+- View and Edit Servers
+
+- A Service is used to load and update Servers
+
+3. Users
+
+- View Users
+
+Chúng ta sẽ cải thiện ứng dụng bằng cách sử dụng `Routing`.
