@@ -1573,3 +1573,9 @@ export class AccountsService {
 Trong AccoutsService chúng ta có 1 mảng accounts và 2 hàm là addAccount và updateStatus. Bây giờ chúng ta có thể thay thế Output và EventEmitter bằng AccountsService.
 
 Sau khi cập nhật, ứng dụng vẫn chạy bình thường nhưng khi chúng ta add/update account thì thông tin không được cập nhật. Chúng ta sẽ xử lý trong bài sau.
+
+### 109 Understanding the Hierarchical Injector
+
+Trong hình là phạm vi áp dụng của Service
+
+![Hierarchical Injector](https://i.ibb.co/j3wSCgX/vlcsnap-2020-12-02-08h19m09s020.png)
