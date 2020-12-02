@@ -1461,7 +1461,7 @@ export class DropdownDirective {
 }
 ```
 
-## 09 Using Services  Dependency Injection
+## 09 Using Services Dependency Injection
 
 ### 104 Module Introduction
 
@@ -1514,6 +1514,7 @@ Chỉ cần import, tạo mới class service và gọi hàm. Tuy nhiên đây k
 ```ts
 import { LoggingService } from '../logging.service';
 ```
+
 2. Adding to providers
 
 ```ts
@@ -1597,7 +1598,7 @@ Chúng ta nên thêm services vào provides trong AppModule
 Tiếp theo chúng ta sẽ chuyển logStatusChange vào AccountsService
 
 ```ts
-import { LoggingService } from "./logging.service";
+import { LoggingService } from './logging.service';
 
 export class AccountsService {
   accounts = [];
@@ -1619,12 +1620,39 @@ export class AccountsService {
 Tuy nhiên có một vấn đề và ứng dụng sẽ không chạy. Để nó hoạt động chúng ta cần phải thêm @Injectable như sau:
 
 ```ts
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { LoggingService } from "./logging.service";
+import { LoggingService } from './logging.service';
 
 @Injectable()
 export class AccountsService {}
 ```
 
 > Lưu ý: không phải tất cả service đều cần sử dụng @Injectable. Chỉ cần phải thêm @Injectable nếu trong service đó có sử dụng một Service khác. Tuy nhiên Angular đề nghị nên sửa thêm @Injectable cho tất cả Service :))
+
+### 112 Using Services for Cross-Component Communication
+
+Ví dụ bây giờ chúng ta muốn bắt sự kiện khi một status thay đổi trong `NewAccountComponent` từ `AccountComponent` thì làm thế nào?
+
+Chúng ta sẽ làm như sau:
+
+1. Đầu tiên là sử dụng `EventEmitter` trong `AccountsService`
+
+```ts
+statusUpdated = new EventEmitter<string>();
+```
+
+2. Tiếp theo là `emit` `status` khi có thay đổi trong `AccountComponent`
+
+```ts
+this.accountsService.statusUpdated.emit(status);
+```
+
+3. Cuối cùng là `subscribe` event trong `NewAccountComponent`
+
+```ts
+this.accountsService.statusUpdated.subscribe((status: string) =>
+  alert('New Status: ' + status)
+);
+```
+
