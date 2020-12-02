@@ -1730,3 +1730,33 @@ export class RecipeService {
 ```
 
 Sau đó thêm vào `provides` trong `RecipeComponent` để có thể sử dụng trong `RecipeComponent` và các `Child Components` của nó
+
+### 118 Using a Service for Cross-Component Communication
+
+Trong bài này chúng ta sử dụng RecipeService để thay cho cách làm ở bài 087
+
+1. Thêm `EventEmitter` vào `recipe.service.ts`
+
+```ts
+recipeSelected = new EventEmitter<Recipe>();
+```
+
+2. `Emit` trong `recipe-item.component.ts`
+
+```ts
+onSelected(): void {
+  this.recipeService.recipeSelected.emit(this.recipe);
+}
+```
+
+3. `Subscribe` trong `recipes.component.ts`
+
+```ts
+ngOnInit(): void {
+  this.recipeService.recipeSelected.subscribe(
+    (recipe: Recipe) => {
+      this.recipeSelected = recipe;
+    }
+  );
+}
+```
