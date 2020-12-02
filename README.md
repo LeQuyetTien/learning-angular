@@ -1656,3 +1656,32 @@ this.accountsService.statusUpdated.subscribe((status: string) =>
 );
 ```
 
+### 113 Services in Angular 6
+
+Từ Angular 6+, chúng có thể sử dụng
+
+```ts
+@Injectable({providedIn: 'root'})
+export class MyService { ... }
+```
+
+thay cho:
+
+```ts
+export class MyService { ... }
+```
+
+và
+
+```ts
+import { MyService } from './path/to/my.service';
+
+@NgModule({
+  ...
+  providers: [MyService]
+})
+export class AppModule { ... }
+```
+
+Cái này là lazy loading, services sẽ không import ngay từ đầu, mà chỉ được sử dụng khi cần.
+
