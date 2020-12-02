@@ -1849,3 +1849,7 @@ private recipes: Recipe[] = [
   </li>
 </ul>
 ```
+
+### 122 Passing Ingredients from Recipes to the Shopping List
+
+Trong bài này chúng ta thực hiện hành động `Manage Recipe` > `To Shopping List` để thêm danh sách `Ingredients` của một `Recipe` vào `Shopping List`
