@@ -1685,3 +1685,4 @@ export class AppModule { ... }
 
 Cái này là lazy loading, services sẽ không import ngay từ đầu, mà chỉ được sử dụng khi cần.
 
+### 114 [OPTIONAL] Assignment Solution
