@@ -1687,7 +1687,7 @@ Cái này là lazy loading, services sẽ không import ngay từ đầu, mà ch
 
 ### 114 [OPTIONAL] Assignment Solution
 
-## 10 Course Project - Services  Dependency Injection
+## 10 Course Project - Services Dependency Injection
 
 ### 115 Introduction
 
@@ -1791,3 +1791,61 @@ export class ShoppingListService {
 Khi chạy thử, chúng ta thấy khi thêm một Ingredient, ứng dụng không hiển thị lỗi nhưng new ingredient cũng không hiển thị trong danh sách. Lý do là bởi vì chúng ta chỉ lấy một bản copy từ ShoppingListService. Để sửa lỗi này chúng ta chỉ đơn giản là đổi `return this.ingredients.slice();` thành `return this.ingredients;` là được.
 
 Tuy nhiên trong bày này chúng ta sử dụng một cách khác đó là dùng EventEmitter để emit và subscribe khi có thay đổi.
+
+### 121 Adding Ingredients to Recipes
+
+Trong 1 Recipe sẽ có nhiều Ingredient cho nên chúng ta sẽ thêm Ingredient vào Recipe như sau:
+
+1. Cập nhật `recipe.model.ts`
+
+```ts
+import { Ingredient } from '../shared/ingredient.model';
+
+export class Recipe {
+  public name: string;
+  public description: string;
+  public imagePath: string;
+  public ingredients: Ingredient[];
+
+  constructor(
+    name: string,
+    desc: string,
+    imagePath: string,
+    ingredients: Ingredient[]
+  ) {
+    this.name = name;
+    this.description = desc;
+    this.imagePath = imagePath;
+    this.ingredients = ingredients;
+  }
+}
+```
+
+2. Cập nhật `recipe.service.ts`
+
+```ts
+private recipes: Recipe[] = [
+  new Recipe(
+    'Recipe Test 1',
+    'This is simple a test 1',
+    'https://i1.wp.com/www.eatthis.com/wp-content/uploads/2019/10/pumpkin-pad-thai-recipe.jpg',
+    [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
+  ),
+  new Recipe(
+    'Recipe Test 2',
+    'This is simple a test 2',
+    'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2018/9/26/0/FNK_Tuscan-Chicken-Skillet_H2_s4x3.jpg.rend.hgtvcom.826.620.suffix/1537973085542.jpeg',
+    [new Ingredient('Buns', 2), new Ingredient('Meat', 1)]
+  ),
+];
+```
+
+3. Hiển thị Ingredients trong recipe-detail.component.html
+
+```html
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+    <p>{{ ingredient.name }} - {{ ingredient.amount }}</p>
+  </li>
+</ul>
+```
