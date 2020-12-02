@@ -1579,3 +1579,52 @@ Sau khi cập nhật, ứng dụng vẫn chạy bình thường nhưng khi chún
 Trong hình là phạm vi áp dụng của Service
 
 ![Hierarchical Injector](https://i.ibb.co/j3wSCgX/vlcsnap-2020-12-02-08h19m09s020.png)
+
+### 110 How many Instances of Service Should It Be
+
+Trong bài 109 chúng ta đã biết phạm vi áp dụng của Service. Quay lại vấn đề trong bài 108, khi chúng ta add/update account thì danh sách không được cập nhật.
+
+Theo lý thuyết trong AppComponent chúng ta đã import AccountsService cho nên nó sẽ áp dụng cho tất cả component, cho nên lẽ ra nó nên hoạt động đúng. Tuy nhiên vấn đề ở đây là ở trong AccountComponent và NewAccountComponent chúng ta import AccountsServices một lần nữa, cho nên nó bị ghi đè và khi chúng ta add/update trong 2 component này thì nó không cập nhật được vào AccountsService trong AppComponent
+
+Để giải quyết vấn đề này thì chúng ta chỉ cần gỡ bỏ provides AccountsService trong 2 component con là được, chỉ giữ lại provides trong AppComponent.
+
+It works!
+
+### 111 Injecting Services into Services
+
+Chúng ta nên thêm services vào provides trong AppModule
+
+Tiếp theo chúng ta sẽ chuyển logStatusChange vào AccountsService
+
+```ts
+import { LoggingService } from "./logging.service";
+
+export class AccountsService {
+  accounts = [];
+
+  constructor(private loggingService: LoggingService) {}
+
+  addAccount(name: string, status: string) {
+    this.accounts.push({ name: name, status: status });
+    this.loggingService.logStatusChange(status);
+  }
+
+  updateStatus(id: number, status: string) {
+    this.accounts[id].status = status;
+    this.loggingService.logStatusChange(status);
+  }
+}
+```
+
+Tuy nhiên có một vấn đề và ứng dụng sẽ không chạy. Để nó hoạt động chúng ta cần phải thêm @Injectable như sau:
+
+```ts
+import { Injectable } from "@angular/core";
+
+import { LoggingService } from "./logging.service";
+
+@Injectable()
+export class AccountsService {}
+```
+
+> Lưu ý: không phải tất cả service đều cần sử dụng @Injectable. Chỉ cần phải thêm @Injectable nếu trong service đó có sử dụng một Service khác. Tuy nhiên Angular đề nghị nên sửa thêm @Injectable cho tất cả Service :))
