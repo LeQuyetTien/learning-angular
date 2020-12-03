@@ -2120,3 +2120,40 @@ ngOnInit() {
 ```
 
 Hàm `this.route.params` là một `Observable`, nó sẽ lắng nghe và cập nhật mỗi khi có sự thay đổi từ các tham số
+
+### 135 An Important Note about Route Observables
+
+Trong bài trước chúng ta sử dụng `this.route.params.subscribe` để cập nhật giá trị khi có thay đổi, hàm này là một `Observable` và nó sẽ chạy ngầm và luôn được lưu trong bộ nhớ dù cho `Component` có bị `destroy`. Cho nên chúng ta cần đăng ký một `Subscription` cho nó để có thể `destroy` nó khi cần.
+
+```ts
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit, OnDestroy {
+  user: {id: number, name: string};
+  paramsSubscription: Subscription;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.paramsSubscription = this.route.params.subscribe(
+      (params: Params) => {
+        this.user.id = params.id;
+        this.user.name = params.name;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.paramsSubscription.unsubscribe();
+  }
+}
+```
+
+Bây giờ, khi chúng ta rời khỏi trang này, paramsSubscription cũng sẽ được destroy theo để giải phóng bộ nhớ.
