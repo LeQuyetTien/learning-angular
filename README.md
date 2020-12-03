@@ -1973,3 +1973,20 @@ Tuy nhiên có 1 vấn đề, tab Home luôn được active, bởi vì path đ�
   </li>
 </ul>
 ```
+
+### 130 Navigating Programmatically
+
+Để điều hướng trong TS chúng ta làm như sau:
+
+```ts
+import { Router } from '@angular/router';
+...
+export class HomeComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  onLoadServer() {
+    this.router.navigate(['/servers']);
+  }
+}
+```
