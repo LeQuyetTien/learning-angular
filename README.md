@@ -2047,3 +2047,13 @@ export class ServersComponent implements OnInit {
 ```
 
 Lúc này, khi chúng ta click và button `Reload Page` thì nó sẽ hiển thị lỗi tương nhự như khi sử dụng `routerLink`
+
+### 132 Passing Parameters to Routers
+
+Chúng ta thêm `route` sau vào `appRoutes` để xem chi tiết một `user` trong `UserComponent` với `id` là một tham số động
+
+```ts
+const appRoutes: Routes = [
+  { path: 'users/:id', component: UserComponent},
+];
+```
