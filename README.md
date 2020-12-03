@@ -2068,7 +2068,7 @@ const appRoutes: Routes = [
 ];
 ```
 
-Bây giờ để bắt lấy 2 giá trị `id` và `name` chúng ta làm như sau:
+Bây giờ để bắt lấy 2 giá trị `id` và `name` chúng ta sử dụng 'this.route.snapshot.params' như sau:
 
 user.component.ts
 
@@ -2089,3 +2089,34 @@ export class UserComponent implements OnInit {
 
 }
 ```
+
+### 134 Fetching Route Parameters Reactively
+
+Chúng ta cập nhật lại file user.component.html lại như sau:
+
+```html
+<p>User with ID {{ user.id }} loaded.</p>
+<p>User name is {{ user.name }}</p>
+<a [routerLink]="['/users', 10, 'Anna']">Load Anna (10)</a>
+```
+
+Khi click vào button `Load Anna (10)` chúng ta thấy URL đã thay đổi thành `http://localhost:4200/users/10/Anna` nhưng giá trị trong trang không phải đổi. Bởi sau khi click, Angular sẽ điều hướng đến URL tương ứng, tuy nhiên nó nhận thấy rằng trang này đang mở và đã load rồi, cho nên nó không load lại, và đó là lý do vì sao giá trị trong trang không thay đổi mặc dù URL đã thay đổi
+
+Để giải quyết vấn đề này, chúng ta sẽ sử dụng `this.route.params` thay cho `this.route.snapshot.params` như sau:
+
+```ts
+ngOnInit() {
+  this.user = {
+    id: this.route.snapshot.params.id,
+    name: this.route.snapshot.params.name
+  };
+  this.route.params.subscribe(
+    (params: Params) => {
+      this.user.id = params.id;
+      this.user.name = params.name;
+    }
+  );
+}
+```
+
+Hàm `this.route.params` là một `Observable`, nó sẽ lắng nghe và cập nhật mỗi khi có sự thay đổi từ các tham số
