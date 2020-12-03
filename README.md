@@ -1854,7 +1854,6 @@ private recipes: Recipe[] = [
 
 Trong bài này chúng ta thực hiện hành động `Manage Recipe` > `To Shopping List` để thêm danh sách `Ingredients` của một `Recipe` vào `Shopping List`
 
-
 ## 11 Changing Pages with Routing
 
 ### 123 Module Introduction
@@ -1882,3 +1881,26 @@ Trong ứng dụng, chúng ta có 3 phần chính:
 - View Users
 
 Chúng ta sẽ cải thiện ứng dụng bằng cách sử dụng `Routing`.
+
+### 126 Setting up and Loading Routers
+
+Đầu tiên, để sử dụng `Routers` chúng ta cần khai báo và import vào `AppModule` như sau:
+
+`app.module.ts`
+
+```ts
+import { RouterModule, Routes } from '@angular/router';
+...
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users', component: UserComponent },
+  { path: 'servers', component: ServerComponent },
+];
+...
+imports: [
+    ...
+    RouterModule.forRoot(appRoutes)
+  ],
+```
+
+Sau đó thêm thẻ `<router-outlet></router-outlet>` vào `app.component.html`
