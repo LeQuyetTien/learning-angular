@@ -1937,7 +1937,7 @@ Khi chúng ta `click` vào `routerLink`, `Angular` sẽ tìm đến `Component` 
 
 Ví dụ như chúng ta đang ở `localhost:4200/servers`:
 
-- `routerLink="/server"` <=> `localhost:4200/servers/servers`
+- `routerLink="servers"` <=> `localhost:4200/servers/servers`
 - `routerLink="./something"` <=> `localhost:4200/servers/something`
 - `routerLink="../users"` <=> `localhost:4200/users`
 - `routerLink="/"` <=> `localhost:4200`
@@ -1990,3 +1990,60 @@ export class HomeComponent implements OnInit {
   }
 }
 ```
+
+### 131 Using Relative Paths in Programmatic Navigation
+
+Ok, bây giờ chúng ta thử điều hướng đến `/servers` trong `ServersComponent`
+
+servers.component.html
+
+```html
+<button class="btn btn-primary" (click)="onReload()">Reload Page</button>
+```
+
+servers.component.ts
+
+```ts
+onReload() {
+  this.router.navigate(['/servers']);
+}
+```
+
+Khi chúng ta click và button `Reload Page`, sẽ không có chuyện gì xảy ra, bởi vì Angular tìm thấy chúng ta đang ở trong chính trang cần điều hướng, cho nên nó sẽ không làm gì cả.
+
+Bây giờ chúng ta thử xóa dấu `/` trước `servers` xem chuyện gì xảy ra.
+
+```ts
+onReload() {
+  this.router.navigate(['servers']);
+}
+```
+
+Khi click và button `Reload Page` Vẫn không có gì xảy ra, kỳ lạ ghê. Lẽ ra nó phải báo lỗi như bài trước chúng ta sử dụng `routerLink="servers"` chứ? Tại sao nó không có lỗi?
+
+Tại vì khi sử dụng `routerLink`, Angular biết trang hiện tại là trang nào, cho nên khi sử dụng `routerLink="servers"` trong Servers Page thì nó sẽ điều hướng đến `localhost:4200/servers/servers`, mà trang này lại không có cho nên nó sẽ hiển thị lỗi. Tuy nhiên khi chúng ta sử dụng `this.router.navigate(['servers'])` thì Angular không xác định được chúng ta đang ở trang nào, cũng không xác định được trang `servers` là trang nào cho nên nó không xử lý được.
+
+Để Angular biết chúng ta đang ở trang nào, thì chúng ta cần sử dụng ActivatedRoute` như sau:
+
+```ts
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-servers',
+  templateUrl: './servers.component.html',
+  styleUrls: ['./servers.component.css'],
+})
+export class ServersComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  onReload() {
+    this.router.navigate(['servers'], { relativeTo: this.route });
+  }
+}
+
+```
+
+Lúc này, khi chúng ta click và button `Reload Page` thì nó sẽ hiển thị lỗi tương nhự như khi sử dụng `routerLink`
