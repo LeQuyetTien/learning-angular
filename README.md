@@ -1894,7 +1894,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UserComponent },
-  { path: 'servers', component: ServerComponent },
+  { path: 'servers', component: ServersComponent },
 ];
 ...
 imports: [
@@ -1904,3 +1904,29 @@ imports: [
 ```
 
 Sau đó thêm thẻ `<router-outlet></router-outlet>` vào `app.component.html`
+
+### 127 Navigating with Router Links
+
+Để điều hướng, đơn giản chúng chỉ cần sửa link `href` lại như sau:
+
+```html
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="/">Home</a></li>
+  <li role="presentation"><a href="/servers">Servers</a></li>
+  <li role="presentation"><a href="/users">Users</a></li>
+</ul>
+```
+
+Tuy nhiên đây không phải là cách điều hướng trong ứng dụng Angular. Nếu chúng ta điều hướng kiểu này, thì toàn bộ trang web sẽ được tải lại.
+
+Chúng ta sẽ sử dụng `routerLink` như sau:
+
+```html
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a routerLink="/">Home</a></li>
+  <li role="presentation"><a routerLink="/servers">Servers</a></li>
+  <li role="presentation"><a [routerLink]="['/users']">Users</a></li>
+</ul>
+```
+
+Khi chúng ta `click` vào `routerLink`, `Angular` sẽ tìm đến `Component` tương ứng với `link` đó rồi `import` nội dung vào thẻ `<router-outlet></router-outlet>`

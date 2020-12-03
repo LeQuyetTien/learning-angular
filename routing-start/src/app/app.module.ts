@@ -12,12 +12,11 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { ServerComponent } from './servers/server/server.component';
 import { ServersService } from './servers/servers.service';
 
-
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'servers', component: ServerComponent},
+  { path: 'servers', component: ServersComponent},
   { path: 'users', component: UsersComponent},
-]
+];
 
 @NgModule({
   declarations: [
