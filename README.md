@@ -1936,7 +1936,40 @@ Khi chúng ta `click` vào `routerLink`, `Angular` sẽ tìm đến `Component` 
 Điều hướng trong trong Angular cũng tương tự như điều hướng thư mục thôi.
 
 Ví dụ như chúng ta đang ở `localhost:4200/servers`:
+
 - `routerLink="/server"` <=> `localhost:4200/servers/servers`
 - `routerLink="./something"` <=> `localhost:4200/servers/something`
 - `routerLink="../users"` <=> `localhost:4200/users`
 - `routerLink="/"` <=> `localhost:4200`
+
+### 129 Styling Active Router Links
+
+Trong Boostrap, để highlight tab đang active, chúng ta thêm class="active" vào tab đó. Để thêm class cho router đang active chúng ta sử dụng `routerLinkActive` như sau:
+
+```html
+<ul class="nav nav-tabs">
+  <li role="presentation" routerLinkActive="active">
+    <a routerLink="/">Home</a>
+  </li>
+  <li role="presentation" routerLinkActive="active">
+    <a routerLink="/servers">Servers</a>
+  </li>
+  <li role="presentation" routerLinkActive="active">
+    <a [routerLink]="['/users']">Users</a>
+  </li>
+</ul>
+```
+
+Tuy nhiên có 1 vấn đề, tab Home luôn được active, bởi vì path đến Home Page là `"/"`, mà trong path của Users Page và Servers Page cũng có chứa `"/"`. Để sửa vấn đề này, chúng ta sử dụng `routerLinkActiveOptions` như sau:
+
+```html
+<ul class="nav nav-tabs">
+  <li
+    role="presentation"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}"
+  >
+    <a routerLink="/">Home</a>
+  </li>
+</ul>
+```
