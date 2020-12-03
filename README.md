@@ -2057,3 +2057,35 @@ const appRoutes: Routes = [
   { path: 'users/:id', component: UserComponent},
 ];
 ```
+
+### 133 Fetching Route Parameters
+
+Chúng ta cập nhật lại route user như sau:
+
+```ts
+const appRoutes: Routes = [
+  { path: 'users/:id/:name', component: UserComponent},
+];
+```
+
+Bây giờ để bắt lấy 2 giá trị `id` và `name` chúng ta làm như sau:
+
+user.component.ts
+
+```ts
+import { ActivatedRoute } from '@angular/router';
+...
+export class UserComponent implements OnInit {
+  user: {id: number, name: string};
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.user = {
+      id: this.route.snapshot.params.id,
+      name: this.route.snapshot.params.name
+    };
+  }
+
+}
+```
