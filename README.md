@@ -1930,3 +1930,13 @@ Chúng ta sẽ sử dụng `routerLink` như sau:
 ```
 
 Khi chúng ta `click` vào `routerLink`, `Angular` sẽ tìm đến `Component` tương ứng với `link` đó rồi `import` nội dung vào thẻ `<router-outlet></router-outlet>`
+
+### 128 Understanding Navigation Paths
+
+Điều hướng trong trong Angular cũng tương tự như điều hướng thư mục thôi.
+
+Ví dụ như chúng ta đang ở `localhost:4200/servers`:
+- `routerLink="/server"` <=> `localhost:4200/servers/servers`
+- `routerLink="./something"` <=> `localhost:4200/servers/something`
+- `routerLink="../users"` <=> `localhost:4200/users`
+- `routerLink="/"` <=> `localhost:4200`
