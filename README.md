@@ -2161,7 +2161,8 @@ Bây giờ chúng ta muốn link đến `http://localhost:4200/servers/5/edit?al
 <a
   [routerLink]="['/servers/', 5, 'edit']"
   [queryParams]="{allowEdit: '1'}"
-  fragment="loading">
+  fragment="loading"
+>
   {{ server.name }}
 </a>
 ```
@@ -2195,3 +2196,87 @@ ngOnInit() {
 ```
 
 > Lưu ý: khi dùng snapshot thì Component chỉ chạy lần đầu khi khởi tạo, nếu ngay tại Component đó, chúng ta gọi lại chính nó với tham số URL khác thì URL sẽ thay đổi nhưng giá trị của `Query Parameters` và `Framents` sẽ không được cập nhật. Còn `this.route.queryParams` và `this.route.fragment` là các Observable và nó sẽ chạy ngầm để có thể cập nhật giá trị khi có bất kỳ thay đổi nào. Cũng cần lưu ý rằng cần `unsubscribe` nó khi `Destroy` để giải phóng bộ nhớ.
+
+### 138 Practicing and some Common Gotchas
+
+Bây giờ chúng ta sẽ routing từ users.component.html sang UserComponent như sau:
+
+```html
+<a
+  [routerLink]="['/users', user.id, user.name]"
+  class="list-group-item"
+  *ngFor="let user of users"
+>
+  {{ user.name }}
+</a>
+```
+
+Tiếp theo chúng ta sẽ routing từ servers.component.html sang ServerComponent như sau:
+
+Đầu tiên là thêm `routing` vào `app.module.ts`
+
+```ts
+const appRoutes: Routes = [{ path: 'servers/:id', component: ServerComponent }];
+```
+
+Sau đó cập nhật `routerLink` trong `servers.html.component.html`
+
+```html
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a
+        [routerLink]="['/servers/', server.id]"
+        [queryParams]="{allowEdit: '1'}"
+        fragment="loading"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers"
+      >
+        {{ server.name }}
+      </a>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <button class="btn btn-primary" (click)="onReload()">Reload Page</button>
+    <app-edit-server></app-edit-server>
+    <hr />
+    <!-- <app-server></app-server> -->
+  </div>
+</div>
+```
+
+Cuối cùng là `retrieving` `params` trong `server.component.ts`
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { ServersService } from '../servers.service';
+
+@Component({
+  selector: 'app-server',
+  templateUrl: './server.component.html',
+  styleUrls: ['./server.component.css'],
+})
+export class ServerComponent implements OnInit {
+  server: { id: number; name: string; status: string };
+
+  constructor(
+    private serversService: ServersService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    const id = +this.route.snapshot.params['id'];
+    this.server = this.serversService.getServer(id);
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.server = this.serversService.getServer(+params['id']);
+      }
+    );
+  }
+}
+```
+
+> Lưu ý: `params` truyền qua `URL` luôn có kiểu `string`, do đó cần lưu ý để tránh bị lỗi. Trong ví dụ trên chúng ta thêm dấu `+` vào trước `this.route.snapshot.params['id']` và `params['id']` để ép kiểu `string` sang `number`
