@@ -2034,16 +2034,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./servers.component.css'],
 })
 export class ServersComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   onReload() {
     this.router.navigate(['servers'], { relativeTo: this.route });
   }
 }
-
 ```
 
 Lúc này, khi chúng ta click và button `Reload Page` thì nó sẽ hiển thị lỗi tương nhự như khi sử dụng `routerLink`
@@ -2053,9 +2049,7 @@ Lúc này, khi chúng ta click và button `Reload Page` thì nó sẽ hiển th�
 Chúng ta thêm `route` sau vào `appRoutes` để xem chi tiết một `user` trong `UserComponent` với `id` là một tham số động
 
 ```ts
-const appRoutes: Routes = [
-  { path: 'users/:id', component: UserComponent},
-];
+const appRoutes: Routes = [{ path: 'users/:id', component: UserComponent }];
 ```
 
 ### 133 Fetching Route Parameters
@@ -2064,7 +2058,7 @@ Chúng ta cập nhật lại route user như sau:
 
 ```ts
 const appRoutes: Routes = [
-  { path: 'users/:id/:name', component: UserComponent},
+  { path: 'users/:id/:name', component: UserComponent },
 ];
 ```
 
@@ -2133,21 +2127,19 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit, OnDestroy {
-  user: {id: number, name: string};
+  user: { id: number; name: string };
   paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.paramsSubscription = this.route.params.subscribe(
-      (params: Params) => {
-        this.user.id = params.id;
-        this.user.name = params.name;
-      }
-    );
+    this.paramsSubscription = this.route.params.subscribe((params: Params) => {
+      this.user.id = params.id;
+      this.user.name = params.name;
+    });
   }
 
   ngOnDestroy() {
@@ -2157,3 +2149,27 @@ export class UserComponent implements OnInit, OnDestroy {
 ```
 
 Bây giờ, khi chúng ta rời khỏi trang này, paramsSubscription cũng sẽ được destroy theo để giải phóng bộ nhớ.
+
+### 136 Passing Query Parameters and Fragments
+
+- Query Parameters là phần sau dấu `?`
+- Fragments là phần sau dấu `#`
+
+Bây giờ chúng ta muốn link đến `http://localhost:4200/servers/5/edit?allowEdit=1#%20loading` thì làm thế nào trong HTML?
+
+```html
+<a
+  [routerLink]="['/servers/', 5, 'edit']"
+  [queryParams]="{allowEdit: '1'}"
+  fragment="loading">
+  {{ server.name }}
+</a>
+```
+
+OK. Bây giờ chúng ta muốn link đến URL đó nhưng sử dụng TS thì làm thế nào?
+
+```ts
+onLoadServer() {
+  this.router.navigate(['/servers', 5, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
+}
+```
