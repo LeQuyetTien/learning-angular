@@ -2173,3 +2173,25 @@ onLoadServer() {
   this.router.navigate(['/servers', 5, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
 }
 ```
+
+### 137 Retrieving Query Parameters and Fragments
+
+Để lấy được `Query Parameters` và `Framents` chúng ta có thể sử dụng `snapshot` như sau:
+
+```ts
+ngOnInit() {
+  console.log(this.route.snapshot.queryParams);
+  console.log(this.route.snapshot.fragment);
+}
+```
+
+hoặc
+
+```ts
+ngOnInit() {
+  this.route.queryParams.subscribe();
+  this.route.fragment.subscribe();
+}
+```
+
+> Lưu ý: khi dùng snapshot thì Component chỉ chạy lần đầu khi khởi tạo, nếu ngay tại Component đó, chúng ta gọi lại chính nó với tham số URL khác thì URL sẽ thay đổi nhưng giá trị của `Query Parameters` và `Framents` sẽ không được cập nhật. Còn `this.route.queryParams` và `this.route.fragment` là các Observable và nó sẽ chạy ngầm để có thể cập nhật giá trị khi có bất kỳ thay đổi nào. Cũng cần lưu ý rằng cần `unsubscribe` nó khi `Destroy` để giải phóng bộ nhớ.
