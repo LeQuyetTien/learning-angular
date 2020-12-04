@@ -2280,3 +2280,55 @@ export class ServerComponent implements OnInit {
 ```
 
 > Lưu ý: `params` truyền qua `URL` luôn có kiểu `string`, do đó cần lưu ý để tránh bị lỗi. Trong ví dụ trên chúng ta thêm dấu `+` vào trước `this.route.snapshot.params['id']` và `params['id']` để ép kiểu `string` sang `number`
+
+### 139 Setting up Child (Nested) Routes
+
+Chúng ta sẽ cập nhật lại ứng dụng sử dụng `Child Routes` như sau:
+
+Đầu tiên là cập nhật lại `apppRoutes` trong `app.module.ts`
+
+```ts
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  {
+    path: 'servers',
+    component: ServersComponent,
+    children: [
+      { path: ':id', component: ServerComponent },
+      { path: ':id/edit', component: EditServerComponent },
+    ],
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    children: [
+      { path: ':id/:name', component: UserComponent }
+    ],
+  },
+];
+```
+
+Chỉ cần thêm mảng `children` và xóa phần tiền tố của `Parent Routes` trong `Child Routes` là được.
+
+Tiếp theo là thêm `<router-outlet></router-outlet>` vào file `HTML` của `Parent Component`, nơi cần load `Child Routes`
+
+servers.component.html
+
+```html
+<div class="col-xs-12 col-sm-4">
+  <router-outlet></router-outlet>
+  <!-- <button class="btn btn-primary" (click)="onReload()">Reload Page</button> -->
+  <!-- <app-edit-server></app-edit-server> -->
+  <!-- <hr> -->
+  <!-- <app-server></app-server> -->
+</div>
+```
+
+users.component.html
+
+```html
+<div class="col-xs-12 col-sm-4">
+  <router-outlet></router-outlet>
+  <!-- <app-user></app-user> -->
+</div>
+```
