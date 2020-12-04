@@ -2419,3 +2419,7 @@ const appRoutes: Routes = [
 Khi chúng ta mở một trang bất kỳ chưa được xác định, route tương ứng sẽ là `**`, Angular sau đó sẽ `redirectTo` `/not-found`
 
 > Lưu ý: `path: '**'` phải để cuối cùng, nếu không những routes sau nó sẽ không thể mở được. Vì Angular sẽ duyệt routes theo thứ tự từ trên xuống dưới.
+
+### 143 Important Redirection Path Matching
+
+Vẫn chưa hiểu nó nói gì :v
