@@ -2270,11 +2270,9 @@ export class ServerComponent implements OnInit {
   ngOnInit() {
     const id = +this.route.snapshot.params['id'];
     this.server = this.serversService.getServer(id);
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.server = this.serversService.getServer(+params['id']);
-      }
-    );
+    this.route.params.subscribe((params: Params) => {
+      this.server = this.serversService.getServer(+params['id']);
+    });
   }
 }
 ```
@@ -2301,9 +2299,7 @@ const appRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-    children: [
-      { path: ':id/:name', component: UserComponent }
-    ],
+    children: [{ path: ':id/:name', component: UserComponent }],
   },
 ];
 ```
@@ -2331,4 +2327,54 @@ users.component.html
   <router-outlet></router-outlet>
   <!-- <app-user></app-user> -->
 </div>
+```
+
+### 140 Using Query Parameters
+
+Bây giờ chúng ta thêm button Edit Server vào server.component.html:
+
+```html
+<button class="btn btn-primary" (click)="onEdit()">Edit Server</button>
+```
+
+Khi click, chúng ta sẽ điều hướng đến trang edit trong server.component.ts như sau:
+
+```ts
+onEdit() {
+  // this.router.navigate(['/servers', this.server.id, 'edit']);
+  this.router.navigate(['edit'], {relativeTo: this.route});
+}
+```
+
+Bây giờ chúng ta chỉ muốn cho phép Edit nếu Server có ID là 3 thì chúng ta sẽ làm như sau:
+
+servers.component.html
+
+```html
+<div class="list-group">
+  <a
+    [routerLink]="['/servers/', server.id]"
+    [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}"
+    fragment="loading"
+    href="#"
+    class="list-group-item"
+    *ngFor="let server of servers"
+  >
+    {{ server.name }}
+  </a>
+</div>
+```
+
+edit-server.component.ts
+
+```ts
+allowEdit = false;
+...
+ngOnInit() {
+  this.route.queryParams.subscribe(
+    (queryParams: Params) => {
+      this.allowEdit = queryParams.allowEdit === '1' ? true : false;
+    }
+  );
+}
 ```
