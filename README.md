@@ -2392,3 +2392,30 @@ onEdit() {
   this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling: 'preserve'});
 }
 ```
+
+### 142 Redirecting and Wildcard Routes
+
+Wow, chúng ta đã học khá nhiều về Routing và cũng đã sắp xong phần này. Tuy nhiên còn 1 vấn đề chúng ta cần giải quyết, đó là khi chúng ta mở một trang chưa được định nghĩa trong appRoutes thì sẽ bị lỗi.
+
+Chúng ta sẽ giải quyết vấn đề này như sau:
+
+Đầu tiên chúng ta sẽ tạo một trang PageNotFound
+
+```c,d
+ng g c page-not-found
+```
+
+Sau đó chúng ta sẽ cập nhật lại appRoutes như sau:
+
+app.module.ts
+
+```ts
+const appRoutes: Routes = [
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/not-found' },
+]
+```
+
+Khi chúng ta mở một trang bất kỳ chưa được xác định, route tương ứng sẽ là `**`, Angular sau đó sẽ `redirectTo` `/not-found`
+
+> Lưu ý: `path: '**'` phải để cuối cùng, nếu không những routes sau nó sẽ không thể mở được. Vì Angular sẽ duyệt routes theo thứ tự từ trên xuống dưới.
