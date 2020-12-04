@@ -2378,3 +2378,17 @@ ngOnInit() {
   );
 }
 ```
+
+### 141 Configuring the Handling of Query Parameters
+
+Trong bài trước chúng ta thấy có một vấn đề là ở trang `server` chúng ta có `URL` kèm theo `Query Parameters` và `Fragments`. Tuy nhiên khi `click` và `Edit Server` thì `Query Parameters` và `Fragments` không còn nữa.
+
+Để giữ `Query Parameters` chúng ta sử dụng `queryParamsHandling` như sau:
+
+server.component.ts
+
+```ts
+onEdit() {
+  this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling: 'preserve'});
+}
+```
