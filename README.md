@@ -2471,3 +2471,9 @@ Sau đó chúng ta cập nhật lại giá trị `imports` trong app.module.ts n
 ```ts
 imports: [BrowserModule, FormsModule, AppRoutingModule],
 ```
+
+### 145 An Introduction to Guards
+
+Guards về cơ bản là một đoạn code mà chúng ta muốn thực thi trước khi route được tải hoặc sau khi rời đi
+
+Ví dụ khi một user muốn mở trang Edit Server, chúng ta sẽ sử dụng Guards để kiểm tra xem User đó có quyền mở trang Edit Server không trước khi chuyển hướng ứng dụng đến trang đó.
