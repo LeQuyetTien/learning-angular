@@ -2413,7 +2413,7 @@ app.module.ts
 const appRoutes: Routes = [
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
-]
+];
 ```
 
 Khi chúng ta mở một trang bất kỳ chưa được xác định, route tương ứng sẽ là `**`, Angular sau đó sẽ `redirectTo` `/not-found`
@@ -2527,7 +2527,6 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -2564,3 +2563,45 @@ app-routing.module.ts
 ```
 
 Cơ bản thì khi user muốn truy cập trang `/servers` thì ứng dụng sẽ kiểm tra hàm `canActivate` trong `AuthGuard`, hàm này lại đi gọi hàm `isAuthenticated` trong `AuthService`, nếu `user` đã `login` thì hàm này sẽ trả về `true` và ứng dụng sẽ chuyển đến trang cần mở, còn nếu không thì sẽ trả về trang gốc
+
+### 147 Protecting Child (Nested) Routes with canActivateChild
+
+Bây giờ chúng ta muốn khi truy cập `Servers` tab thì nó vẫn hiển thị danh sách `Server`, nhưng chỉ sử dụng `Guard` khi user click vào xem chi tiết từng `Server` thì làm thế nào?
+
+Để giải quyết vấn đề này thì chúng ta sẽ sử dụng thuộc tính `canActivateChild` như sau:
+
+auth-guard.service.ts
+
+```ts
+...
+@Injectable()
+export class AuthGuard implements CanActivate, CanActivateChild {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate() {
+    ...
+  }
+
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.canActivate(route, state);
+  }
+}
+```
+
+Sau đó chúng ta thêm canActivateChild vào app-routing.module.ts như sau:
+
+```ts
+{
+  path: 'servers',
+  // canActivate: [AuthGuard],
+  canActivateChild: [AuthGuard],
+  component: ServersComponent,
+  children: [
+    { path: ':id', component: ServerComponent },
+    { path: ':id/edit', component: EditServerComponent },
+  ],
+},
+```
