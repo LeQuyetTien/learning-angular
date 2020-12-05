@@ -2477,3 +2477,90 @@ imports: [BrowserModule, FormsModule, AppRoutingModule],
 Guards về cơ bản là một đoạn code mà chúng ta muốn thực thi trước khi route được tải hoặc sau khi rời đi
 
 Ví dụ khi một user muốn mở trang Edit Server, chúng ta sẽ sử dụng Guards để kiểm tra xem User đó có quyền mở trang Edit Server không trước khi chuyển hướng ứng dụng đến trang đó.
+
+### 146 Protecting Routes with canActivate
+
+Chúng ta sẽ tạo một AuthService như sau:
+
+auth.service.ts
+
+```ts
+export class AuthService {
+  loggedIn = false;
+
+  isAuthenticated() {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.loggedIn);
+      }, 800);
+    });
+    return promise;
+  }
+
+  login() {
+    this.loggedIn = true;
+  }
+
+  logout() {
+    this.loggedIn = false;
+  }
+}
+```
+
+Trong AuthService chúng ta có hàm mô phỏng login/logout và hàm isAuthenticated để trả về trạng thái đang login hay không
+
+Tiếp theo chúng ta sẽ tạo một Guard:
+
+auth-guard.service.ts
+
+```ts
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { AuthService } from './auth.service';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.authService.isAuthenticated().then((authenticated: boolean) => {
+      if (authenticated) {
+        return true;
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
+  }
+}
+```
+
+Trong `AuthGuard` chúng ta sẽ xác định hàm `canActivate` và return hàm `isAuthenticated()` từ `AuthService`.
+
+Cuối cùng chúng ta thêm thuộc tính `canActivate` vào routes cần sử dụng `Guard`
+
+app-routing.module.ts
+
+```ts
+{
+  path: 'servers',
+  canActivate: [AuthGuard],
+  component: ServersComponent,
+  children: [
+    { path: ':id', component: ServerComponent },
+    { path: ':id/edit', component: EditServerComponent },
+  ],
+},
+```
+
+Cơ bản thì khi user muốn truy cập trang `/servers` thì ứng dụng sẽ kiểm tra hàm `canActivate` trong `AuthGuard`, hàm này lại đi gọi hàm `isAuthenticated` trong `AuthService`, nếu `user` đã `login` thì hàm này sẽ trả về `true` và ứng dụng sẽ chuyển đến trang cần mở, còn nếu không thì sẽ trả về trang gốc
