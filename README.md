@@ -2868,3 +2868,23 @@ ngOnInit() {
   // );
 }
 ```
+
+### 152 Understanding Location Strategies
+
+Đến đây chúng ta đã cơ bản học xong phần Routing, phần này khá dài vì nó là một chức năng quan trọng trong tất cả ứng dụng Angular
+
+Tất cả mọi thứ hoạt động tốt, tuy nhiên nếu chúng ta đưa ứng dụng Angular này lên `Web Server` thì có thể nó không hoạt động đúng. Bởi vì khi build, tất cả source sẽ được gói vào trong file `index.html`. Nếu khi chúng ta truy cập vào domain.com/server thì nó hiểu răng chúng ta muốn mở file server.html và gây ra lỗi 404.
+
+Để giải quyết vấn đề này, chúng ta có 1 cách đó là sử dụng `useHash`
+
+app-routing.module.ts
+
+```ts
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+```
+
+Lúc này `http://localhost:4200/` sẽ được đổi thành `http://localhost:4200/#/` để cho Web Server biết là chỉ cần quan tâm đến phần URL trước `#` và bỏ qua phần ở sau.
