@@ -2888,3 +2888,5 @@ export class AppRoutingModule {}
 ```
 
 Lúc này `http://localhost:4200/` sẽ được đổi thành `http://localhost:4200/#/` để cho Web Server biết là chỉ cần quan tâm đến phần URL trước `#` và bỏ qua phần ở sau.
+
+### 153 Wrap Up
