@@ -2746,3 +2746,58 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   }
 }
 ```
+
+### 150 Passing Static Data to a Route
+
+Trong bài này chúng ta sẽ học cách truyền dữ liệu tĩnh qua `Route`
+
+Chúng ta sẽ tạo một `ErrorPageComponent` để hiển thị `errorMessage` từ `Route` thông qua tham số `data`
+
+```cmd
+ng g c error-page
+```
+
+error-page.component.ts
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+
+@Component({
+  selector: 'app-error-page',
+  templateUrl: './error-page.component.html',
+  styleUrls: ['./error-page.component.css']
+})
+export class ErrorPageComponent implements OnInit {
+  errorMessage: string;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // this.errorMessage = this.route.snapshot.data['message'];
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.errorMessage = data['message'];
+      }
+    )
+  }
+
+}
+```
+
+error-page.component.html
+
+```html
+<p>{{ errorMessage }}</p>
+```
+
+Tiếp theo chúng ta sẽ cập nhật lại `app-routing.module.ts`
+
+```ts
+const appRoutes: Routes = [
+  ...
+  // { path: 'not-found', component: PageNotFoundComponent },
+  { path: 'not-found', component: ErrorPageComponent, data: { message: 'Error 404!'} },
+  { path: '**', redirectTo: '/not-found' },
+];
+```
